@@ -1,0 +1,69 @@
+#######################################################################################
+#                         BATCH Configuration		                      #
+#######################################################################################
+#
+#
+#--------------------------------------------------------------------[배치작업구분코드]
+# TA : 총산
+# 
+
+#--------------------------------------------------------------------[배치실행파일정보]
+# [Unix]
+BATCH.RUN.SHELL=/app/arch/btsbatch/startBtsBatch.sh
+
+# [Window]
+#BATCH.RUN.SHELL=v:\btsbatch\startBtsBatch.bat
+##############################################################[ RUNTIME FILE LOCATION ]
+# 배치작업에 사용되는 Directory
+#--------------------------------------------------------------------------------[REAL]
+FILE.PATH.HOME=/app/arch/btsbatch/
+FILE.PATH.SHELL=/app/arch/btsbatch/shell/
+FILE.PATH.DATA=/app/arch/btsbatch/data/
+
+#--------------------------------------------------------------------------------[TEST]
+#FILE.PATH.HOME=v:\btsbatch
+#FILE.PATH.SHELL=v:\btsbatch/shell
+#FILE.PATH.DATA=v:\btsbatch\data
+
+################################################################################[ LOG ]
+# BATCH 작업 LOG
+#--------------------------------------------------------------------------------[REAL]
+BATCH.LOG.PATH=/app/arch/btsbatch/log/
+
+#--------------------------------------------------------------------------------[TEST]
+#BATCH.LOG.PATH=v:\btsbatch\log
+
+##############################################################################[ DEMON ]
+# [항목 설명]
+# -------------------------------------------------------------------------
+#  KEY   | VALUE          | 설명     
+# -------------------------------------------------------------------------
+#  SLEP  | N              | Thred sleep time (기준:초)
+#  YMDT  | YYYYMMDDHHmmss | 기준 년월일시
+#  USYN  | Y              | 사용
+#        | N              | 미사용
+#  MODE  | Y              | Yearly   : 기준 년월일시분초부터 매년 기준 월일시분초에 실행    : YYYY1231113000
+#        | M              | Monthly  : 기준 년월일시분초부터 매월 기준 일시분초에 실행      : YYYYMM01000000
+#        | D              | Daily    : 기준 년월일시분초부터 매일 기준 시분초에 실행        : YYYYMMDD030000
+#        | H              | Timely   : 기준 년월일시분초부터 매시 기준 분초에 실행          : YYYYMMDDHH0000
+#        | m              | Minutely : 기준 년월일시분초부터 매분 기준 초에 실행            : YYYYMMDDHHMM00
+#        | I              | Interval : 기준 년월일시분초부터 기간이 경과할 때마다 실행      : 20071212000000
+#  INTV  | N              | 기간 (기준 : 초)
+#  STRT  | NN             | 실행 범위시간 시작 (기준 : 시)
+#  ENDT  | NN             | 실행 범위시간 종료 (기준 : 시)
+#  PROC  | Procedure Name | 실행 할 Procedure list (구분자 '/' : TRID의 개수와 순서가 같아야 함)
+#  TRID  | TRAN ID        | TRANSATION ID list (구분자 '/' : PROC의 개수와 순서가 같아야 함)
+# -------------------------------------------------------------------------
+
+#--------------------------------------------------------------------[배치실행파일정보]
+DEMON.SVR.SLEP.INTV=60
+DEMON.SVR.WORK.CODE=TA
+#-------------------------------------------------------------[ TA :배치작업 ]
+DEMON.SVR.YMDT.TA=20190816000000
+DEMON.SVR.USYN.TA=Y
+DEMON.SVR.MODE.TA=I
+DEMON.SVR.INTV.TA=300
+DEMON.SVR.STRT.TA=00
+DEMON.SVR.ENDT.TA=24
+DEMON.SVR.TRID.TA=BTS_CUST_TRANS_KT_TEST
+DEMON.SVR.PROC.TA=SP_BTS_CUST_TRANS_KT_TEST

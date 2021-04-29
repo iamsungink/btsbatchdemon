@@ -1,0 +1,297 @@
+#######################################################################################
+#                         BATCH Configuration		                      #
+#######################################################################################
+#
+#
+#--------------------------------------------------------------------[\ubc30\uce58\uc791\uc5c5\uad6c\ubd84\ucf54\ub4dc]
+# OA : \ubcf4\uc0c1\uc811\uc218\uc0c1\ud0dc \uc804\uc1a1(5\ubd84)
+# OB : \ud765\uad6d\uc0dd\uba85 \uc2ec\uc0ac\uc644\ub8cc \uc804\uc1a1
+# OL : \ubcf4\uc0c1\uc2ec\uc0ac\uc644\ub8cc \uc804\uc1a1(1\uc2dc\uac04)
+# IA : UKEY DATA LOAD
+# IB : \ud765\uad6d\uc0dd\uba85 \uc2ec\uc0ac\uc644\ub8cc(\uc9c0\uae09) \uc218\uc2e0
+# IC : \ub300\ub9ac\uc810\ubc30\uc815\uc644\ub8cc(MOC)
+# ID : \ubcf4\uc0c1\uc644\ub8cc(MOD)
+# IE : webfax(\uad6c\ub85c 5\ube10)
+# IF : webfax(\ucda9\uc815\ub85c 5\ubd84)
+
+# IDA :  A\uc0ac \ubd84\uc2e4\uc811\uc218 
+# IDB :  A\uc0ac \ubd84\uc2e4\uc811\uc218_\ubb38\uc11c\uc815\ubcf4
+# IDC :  A\uc0ac \uc0c1\ub2f4\uc774\ub825
+# IDD :  A\uc0ac \ub300\ub9ac\uc810\uc815\ubcf4
+# IDE :  A\uc0ac \ubcf4\uc0c1\uc644\ub8cc\uc815\ubcf4
+# IDF :  A\uc0ac \ubcf4\ub958\uc815\ubcf4
+# 
+
+#--------------------------------------------------------------------[\ubc30\uce58\uc2e4\ud589\ud30c\uc77c\uc815\ubcf4]
+# [Unix]
+#BATCH.RUN.SHELL=/app/arch/btsbatch/startBtsBatch.sh
+
+# [Window]
+BATCH.RUN.SHELL=v:\btsbatch\startBtsBatch.bat
+##############################################################[ RUNTIME FILE LOCATION ]
+# \ubc30\uce58\uc791\uc5c5\uc5d0 \uc0ac\uc6a9\ub418\ub294 Directory
+#--------------------------------------------------------------------------------[REAL]
+#FILE.PATH.HOME=/app/arch/btsbatch/
+#FILE.PATH.SHELL=/app/arch/btsbatch/shell/
+#FILE.PATH.DATA=/app/arch/btsbatch/data/
+
+#--------------------------------------------------------------------------------[TEST]
+FILE.PATH.HOME=v:\btsbatch
+FILE.PATH.SHELL=v:\btsbatch/shell
+FILE.PATH.DATA=v:\btsbatch\data
+
+################################################################################[ LOG ]
+# BATCH \uc791\uc5c5 LOG
+#--------------------------------------------------------------------------------[REAL]
+#BATCH.LOG.PATH=/app/arch/btsbatch/log/
+
+#--------------------------------------------------------------------------------[TEST]
+BATCH.LOG.PATH=v:\btsbatch\log
+
+##############################################################################[ DEMON ]
+# [\ud56d\ubaa9 \uc124\uba85]
+# -------------------------------------------------------------------------
+#  KEY   | VALUE          | \uc124\uba85     
+# -------------------------------------------------------------------------
+#  SLEP  | N              | Thred sleep time (\uae30\uc900:\ucd08)
+#  YMDT  | YYYYMMDDHHmmss | \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc
+#  USYN  | Y              | \uc0ac\uc6a9
+#        | N              | \ubbf8\uc0ac\uc6a9
+#  MODE  | Y              | Yearly   : \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc\ubd84\ucd08\ubd80\ud130 \ub9e4\ub144 \uae30\uc900 \uc6d4\uc77c\uc2dc\ubd84\ucd08\uc5d0 \uc2e4\ud589    : YYYY1231113000
+#        | M              | Monthly  : \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc\ubd84\ucd08\ubd80\ud130 \ub9e4\uc6d4 \uae30\uc900 \uc77c\uc2dc\ubd84\ucd08\uc5d0 \uc2e4\ud589      : YYYYMM01000000
+#        | D              | Daily    : \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc\ubd84\ucd08\ubd80\ud130 \ub9e4\uc77c \uae30\uc900 \uc2dc\ubd84\ucd08\uc5d0 \uc2e4\ud589        : YYYYMMDD030000
+#        | H              | Timely   : \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc\ubd84\ucd08\ubd80\ud130 \ub9e4\uc2dc \uae30\uc900 \ubd84\ucd08\uc5d0 \uc2e4\ud589          : YYYYMMDDHH0000
+#        | m              | Minutely : \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc\ubd84\ucd08\ubd80\ud130 \ub9e4\ubd84 \uae30\uc900 \ucd08\uc5d0 \uc2e4\ud589            : YYYYMMDDHHMM00
+#        | I              | Interval : \uae30\uc900 \ub144\uc6d4\uc77c\uc2dc\ubd84\ucd08\ubd80\ud130 \uae30\uac04\uc774 \uacbd\uacfc\ud560 \ub54c\ub9c8\ub2e4 \uc2e4\ud589      : 20071212000000
+#  INTV  | N              | \uae30\uac04 (\uae30\uc900 : \ucd08)
+#  STRT  | NN             | \uc2e4\ud589 \ubc94\uc704\uc2dc\uac04 \uc2dc\uc791 (\uae30\uc900 : \uc2dc)
+#  ENDT  | NN             | \uc2e4\ud589 \ubc94\uc704\uc2dc\uac04 \uc885\ub8cc (\uae30\uc900 : \uc2dc)
+#  PROC  | Procedure Name | \uc2e4\ud589 \ud560 Procedure list (\uad6c\ubd84\uc790 '/' : TRID\uc758 \uac1c\uc218\uc640 \uc21c\uc11c\uac00 \uac19\uc544\uc57c \ud568)
+#  TRID  | TRAN ID        | TRANSATION ID list (\uad6c\ubd84\uc790 '/' : PROC\uc758 \uac1c\uc218\uc640 \uc21c\uc11c\uac00 \uac19\uc544\uc57c \ud568)
+# -------------------------------------------------------------------------
+
+#--------------------------------------------------------------------[\ubc30\uce58\uc2e4\ud589\ud30c\uc77c\uc815\ubcf4]
+DEMON.SVR.SLEP.INTV=60
+#DEMON.SVR.WORK.CODE=IA_IB_IC_ID_IE_IF_OA_OB_OL_IDA_IDB_IDC_IDD_IDE_IDF
+DEMON.SVR.WORK.CODE=MA
+#---------------------------------------------------[ IA : UKEY data Load]
+#DEMON.SVR.YMDT.IA=20090826000000
+DEMON.SVR.YMDT.IA=YYYYMMDD074000
+DEMON.SVR.USYN.IA=Y
+DEMON.SVR.MODE.IA=D
+DEMON.SVR.INTV.IA=0
+DEMON.SVR.STRT.IA=00
+DEMON.SVR.ENDT.IA=24
+#---------------------------------------------------[ IB : \ud765\uad6d\uc0dd\uba85 \uc2ec\uc0ac\uc644\ub8cc(\uc9c0\uae09) \uc218\uc2e0]
+#DEMON.SVR.YMDT.IB=20090826000000
+DEMON.SVR.YMDT.IB=YYYYMMDD043000
+DEMON.SVR.USYN.IB=Y
+DEMON.SVR.MODE.IB=D
+DEMON.SVR.INTV.IB=0
+DEMON.SVR.STRT.IB=00
+DEMON.SVR.ENDT.IB=24
+#---------------------------------------------------[ IC : \ub300\ub9ac\uc810\ubc30\uc815\uc644\ub8cc(MOC)]
+DEMON.SVR.YMDT.IC=20090826000000
+DEMON.SVR.USYN.IC=Y
+DEMON.SVR.MODE.IC=I
+DEMON.SVR.INTV.IC=1800
+DEMON.SVR.STRT.IC=00
+DEMON.SVR.ENDT.IC=24
+#---------------------------------------------------[ ID : \ubcf4\uc0c1\uc644\ub8cc(MOD)]
+DEMON.SVR.YMDT.ID=20090826000000
+DEMON.SVR.USYN.ID=Y
+DEMON.SVR.MODE.ID=I
+DEMON.SVR.INTV.ID=1800
+DEMON.SVR.STRT.ID=00
+DEMON.SVR.ENDT.ID=24
+#---------------------------------------------------[ IDA :  A\uc0ac \ubd84\uc2e4\uc811\uc218]
+#DEMON.SVR.YMDT.IDA=20090826000000
+DEMON.SVR.YMDT.IDA=YYYYMMDDHH2000
+DEMON.SVR.USYN.IDA=Y
+DEMON.SVR.MODE.IDA=H
+DEMON.SVR.INTV.IDA=0
+DEMON.SVR.STRT.IDA=00
+DEMON.SVR.ENDT.IDA=24
+#---------------------------------------------------[ IDB :  A\uc0ac \ubd84\uc2e4\uc811\uc218_\ubb38\uc11c\uc815\ubcf4]
+#DEMON.SVR.YMDT.IDB=20090826000000
+DEMON.SVR.YMDT.IDB=YYYYMMDDHH3000
+DEMON.SVR.USYN.IDB=Y
+DEMON.SVR.MODE.IDB=H
+DEMON.SVR.INTV.IDB=0
+DEMON.SVR.STRT.IDB=00
+DEMON.SVR.ENDT.IDB=24
+#---------------------------------------------------[ IDC :  A\uc0ac \uc0c1\ub2f4\uc774\ub825]
+#DEMON.SVR.YMDT.IDC=20090826000000
+DEMON.SVR.YMDT.IDC=YYYYMMDDHH3500
+DEMON.SVR.USYN.IDC=Y
+DEMON.SVR.MODE.IDC=H
+DEMON.SVR.INTV.IDC=0
+DEMON.SVR.STRT.IDC=00
+DEMON.SVR.ENDT.IDC=24
+#---------------------------------------------------[ IDD :  A\uc0ac \ub300\ub9ac\uc810\uc815\ubcf4]
+#DEMON.SVR.YMDT.IDD=20090826000000
+DEMON.SVR.YMDT.IDD=YYYYMMDD052000
+DEMON.SVR.USYN.IDD=N
+DEMON.SVR.MODE.IDD=D
+DEMON.SVR.INTV.IDD=0
+DEMON.SVR.STRT.IDD=00
+DEMON.SVR.ENDT.IDD=24
+#---------------------------------------------------[ IDE :  A\uc0ac \ubcf4\uc0c1\uc644\ub8cc\uc815\ubcf4]
+#DEMON.SVR.YMDT.IDE=20090826000000
+DEMON.SVR.YMDT.IDE=YYYYMMDD053000
+DEMON.SVR.USYN.IDE=N
+DEMON.SVR.MODE.IDE=D
+DEMON.SVR.INTV.IDE=0
+DEMON.SVR.STRT.IDE=00
+DEMON.SVR.ENDT.IDE=24
+#---------------------------------------------------[ IDF :  A\uc0ac \ubcf4\ub958\uc815\ubcf4]
+#DEMON.SVR.YMDT.IDF=20090826000000
+DEMON.SVR.YMDT.IDF=YYYYMMDDHH4000
+DEMON.SVR.USYN.IDF=Y
+DEMON.SVR.MODE.IDF=H
+DEMON.SVR.INTV.IDF=0
+DEMON.SVR.STRT.IDF=00
+DEMON.SVR.ENDT.IDF=24
+#---------------------------------------------------[ IE : webfax(GURO)]
+DEMON.SVR.YMDT.IE=20090826000000
+DEMON.SVR.USYN.IE=Y
+DEMON.SVR.MODE.IE=I
+DEMON.SVR.INTV.IE=300
+DEMON.SVR.STRT.IE=00
+DEMON.SVR.ENDT.IE=24
+#---------------------------------------------------[ IF : webfax(CHUNGJUNGRO)]
+DEMON.SVR.YMDT.IF=YYYYMMDD060000
+DEMON.SVR.USYN.IF=Y
+DEMON.SVR.MODE.IF=D
+DEMON.SVR.INTV.IF=0
+DEMON.SVR.STRT.IF=00
+DEMON.SVR.ENDT.IF=24
+#---------------------------------------------------[ OA : \ubcf4\uc0c1 \uc811\uc218 \uc0c1\ud0dc \uc804\uc1a1]
+DEMON.SVR.YMDT.OA=20090826000000
+DEMON.SVR.USYN.OA=Y
+DEMON.SVR.MODE.OA=I
+DEMON.SVR.INTV.OA=300
+DEMON.SVR.STRT.OA=00
+DEMON.SVR.ENDT.OA=24
+#---------------------------------------------------[ OB : \ud765\uad6d\ud654\uc7ac \uc77c\ubc30\uce58]
+#DEMON.SVR.YMDT.OB=20090826000000
+DEMON.SVR.YMDT.OB=YYYYMMDD040000
+DEMON.SVR.USYN.OB=Y
+DEMON.SVR.MODE.OB=D
+DEMON.SVR.INTV.OB=0
+DEMON.SVR.STRT.OB=00
+DEMON.SVR.ENDT.OB=24
+#---------------------------------------------------[ OL : \ubcf4\uc0c1\uc2ec\uc0ac\uc644\ub8cc \uc804\uc1a1]
+DEMON.SVR.YMDT.OL=20090826000000
+DEMON.SVR.USYN.OL=Y
+DEMON.SVR.MODE.OL=I
+DEMON.SVR.INTV.OL=1800
+DEMON.SVR.STRT.OL=00
+DEMON.SVR.ENDT.OL=24
+#-------------------------------------------------------------------------[IA FTP]
+FTP.SVR.IP.IA=203.235.204.145
+FTP.SVR.PORT.IA=21
+FTP.SVR.USER.IA=ssasource
+FTP.SVR.PASS.IA=ssaaupim
+FTP.SVR.WDIR.IA=
+FTP.SVR.PREF.IA=ML01.SKMC
+#-------------------------------------------------------------------------[IB FTP]
+FTP.SVR.IP.IB=
+FTP.SVR.PORT.IB=
+FTP.SVR.USER.IB=
+FTP.SVR.PASS.IB=
+FTP.SVR.WDIR.IB=
+FTP.SVR.PREF.IB=SK_HK21
+#-------------------------------------------------------------------------[IC FTP]
+FTP.SVR.IP.IC=203.235.204.145
+FTP.SVR.PORT.IC=21
+FTP.SVR.USER.IC=ssasource
+FTP.SVR.PASS.IC=ssaaupim
+FTP.SVR.WDIR.IC=
+FTP.SVR.PREF.IC=MOC
+#-------------------------------------------------------------------------[ID FTP]
+FTP.SVR.IP.ID=203.235.204.145
+FTP.SVR.PORT.ID=21
+FTP.SVR.USER.ID=ssasource
+FTP.SVR.PASS.ID=ssaaupim
+FTP.SVR.WDIR.ID=
+FTP.SVR.PREF.ID=MOD
+#-------------------------------------------------------------------------[IDA FTP]
+FTP.SVR.IP.IDA=203.235.204.145
+FTP.SVR.PORT.IDA=21
+FTP.SVR.USER.IDA=ssasource
+FTP.SVR.PASS.IDA=ssaaupim
+FTP.SVR.WDIR.IDA=
+FTP.SVR.PREF.IDA=IDA
+#-------------------------------------------------------------------------[IDB FTP]
+FTP.SVR.IP.IDB=203.235.204.145
+FTP.SVR.PORT.IDB=21
+FTP.SVR.USER.IDB=ssasource
+FTP.SVR.PASS.IDB=ssaaupim
+FTP.SVR.WDIR.IDB=
+FTP.SVR.PREF.IDB=IDB
+#-------------------------------------------------------------------------[IDC FTP]
+FTP.SVR.IP.IDC=203.235.204.145
+FTP.SVR.PORT.IDC=21
+FTP.SVR.USER.IDC=ssasource
+FTP.SVR.PASS.IDC=ssaaupim
+FTP.SVR.WDIR.IDC=
+FTP.SVR.PREF.IDC=IDC
+#-------------------------------------------------------------------------[IDD FTP]
+FTP.SVR.IP.IDD=203.235.204.145
+FTP.SVR.PORT.IDD=21
+FTP.SVR.USER.IDD=ssasource
+FTP.SVR.PASS.IDD=ssaaupim
+FTP.SVR.WDIR.IDD=
+FTP.SVR.PREF.IDD=IDD
+#-------------------------------------------------------------------------[IDE FTP]
+FTP.SVR.IP.IDE=203.235.204.145
+FTP.SVR.PORT.IDE=21
+FTP.SVR.USER.IDE=ssasource
+FTP.SVR.PASS.IDE=ssaaupim
+FTP.SVR.WDIR.IDE=
+FTP.SVR.PREF.IDE=IDE
+#-------------------------------------------------------------------------[IDF FTP]
+FTP.SVR.IP.IDF=203.235.204.145
+FTP.SVR.PORT.IDF=21
+FTP.SVR.USER.IDF=ssasource
+FTP.SVR.PASS.IDF=ssaaupim
+FTP.SVR.WDIR.IDF=
+FTP.SVR.PREF.IDF=IDF
+#-------------------------------------------------------------------------[IE FTP]
+FTP.SVR.IP.IE=203.235.204.145
+FTP.SVR.PORT.IE=21
+FTP.SVR.USER.IE=ssasource
+FTP.SVR.PASS.IE=ssaaupim
+FTP.SVR.WDIR.IE=
+FTP.SVR.PREF.IE=MOA
+#-------------------------------------------------------------------------[IF FTP]
+FTP.SVR.IP.IF=203.235.204.145
+FTP.SVR.PORT.IF=21
+FTP.SVR.USER.IF=ssasource
+FTP.SVR.PASS.IF=ssaaupim
+FTP.SVR.WDIR.IF=
+FTP.SVR.PREF.IF=OA
+#-------------------------------------------------------------------------[OA FTP]
+FTP.SVR.IP.OA=203.235.204.145
+FTP.SVR.PORT.OA=21
+FTP.SVR.USER.OA=ssasource
+FTP.SVR.PASS.OA=ssaaupim
+FTP.SVR.WDIR.OA=
+FTP.SVR.PREF.OA=MIK
+#-------------------------------------------------------------------------[OB FTP]
+#FTP.SVR.IP.OB=10.110.6.61
+FTP.SVR.IP.OB=10.110.6.51
+FTP.SVR.PORT.OB=21
+FTP.SVR.USER.OB=skmns
+#FTP.SVR.PASS.OB=skhk061
+FTP.SVR.PASS.OB=skhk050
+FTP.SVR.WDIR.OB=
+FTP.SVR.PREF.OB=SK_HK11
+#-------------------------------------------------------------------------[OL FTP]
+FTP.SVR.IP.OL=203.235.204.145
+FTP.SVR.PORT.OL=21
+FTP.SVR.USER.OL=ssasource
+FTP.SVR.PASS.OL=ssaaupim
+FTP.SVR.WDIR.OL=mns_if
+FTP.SVR.PREF.OL=

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="demonProcessor">
+ 
+  <insert id="startBatchHtry" parameterClass="DemonDTO" >
+	INSERT INTO TB_BTCBATWORK (work_cd,
+	                           work_dy,
+	                           work_tm,
+	                           work_module_id,
+	                           work_cmpt_fg,
+	                           work_str_datetime,
+	                           work_file_path,
+	                           work_file_name)
+	  VALUES   (#work_cd#,
+	            #work_dy#,
+	            #work_tm#,
+	            #work_module_id#,
+	            #work_cmpt_fg#,
+	            sysdate,
+	            #work_file_path#,
+	            #work_file_name#)
+  </insert>
+  
+  <update id="endBatchHtry" parameterClass="DemonDTO">
+	UPDATE   TB_BTCBATWORK
+	   SET   work_cmpt_fg = #work_cmpt_fg#, work_end_datetime = sysdate
+	 WHERE   work_cd = #work_cd# AND work_dy = #work_dy# AND work_tm = #work_tm#  
+  </update>
+  
+
+  <resultMap id="rGetBtcBatchRslt" class="resultMap">
+ 	<result property="PROG_ID" column="PROG_ID"/>
+	<result property="WORK_STR_DATETIME" column="WORK_STR_DATETIME"/>
+	<result property="WORK_RSLT_FLAG" column="WORK_RSLT_FLAG"/>
+	<result property="WORK_DATE" column="WORK_DATE"/>
+  </resultMap>
+  
+  <select id="getBtcBatchRslt" parameterClass="paramsMap"  resultMap="rGetBtcBatchRslt">
+	SELECT prog_id,
+	       work_str_datetime,
+	       work_rslt_flag,
+	       work_date
+	  FROM (SELECT ROW_NUMBER() OVER (ORDER BY work_date DESC) rnum,
+	               prog_id,
+	               work_str_datetime,
+	               work_rslt_flag,
+	               work_date
+	          FROM TB_BTCBATCHRSLT
+	         WHERE 1 = 1
+	           AND PROG_ID = #prog_id#
+	           <!-- 
+	           AND work_date &gt;= TO_DATE (#work_date#, 'YYYYMMDD')
+	           AND work_date &lt; TO_DATE (#work_date#, 'YYYYMMDD') + 1
+	            -->
+	       )
+	 WHERE rnum = 1
+  </select>
+  
+  <resultMap id="rGetBtsBillCycle" class="resultMap">
+ 	<result property="INV_YYYYMM" column="INV_YYYYMM"/>
+	<result property="INV_FLAG" column="INV_FLAG"/>
+	<result property="WORK_PROC_STAGE" column="WORK_PROC_STAGE"/>
+	<result property="INV_START_DATE" column="INV_START_DATE"/>
+	<result property="INV_END_DATE" column="INV_END_DATE"/>
+  </resultMap>
+
+  <select id="getBtsBillCycle" parameterClass="paramsMap" resultMap="rGetBtsBillCycle">
+	select 
+	  inv_yyyymm,
+	  inv_flag,
+	  work_proc_stage,
+	  to_char(inv_start_date, 'YYYYMMDDHH24MISS') inv_start_date,
+	  to_char(inv_end_date, 'YYYYMMDDHH24MISS') inv_end_date
+	  from tb_btsbillcycle
+	 where inv_yyyymm = #inv_yyyymm#
+	   and inv_flag = #inv_flag# 
+  </select>
+  
+  <!-- BTCBATPGMLIST -->
+  
+  <resultMap id="rGetBtcBatPgmToDoList" class="resultMap">
+ 	<result property="PGM_ID" column="PGM_ID"/>
+	<result property="WORK_BEF_STAGE" column="WORK_BEF_STAGE"/>
+	<result property="WORK_AF_STAGE" column="WORK_AF_STAGE"/>
+	<result property="PROC" column="PROC"/>
+  </resultMap>
+  
+  <select id="getBtcBatPgmToDoList" parameterClass="paramsMap" resultMap="rGetBtcBatPgmToDoList">
+	select pgm_id, work_bef_stage, work_af_stage, proc
+	  from TB_BTCBATPGMLIST
+	 where 1=1
+	   and work_bef_stage &gt;= #work_bef_stage#
+	   and use_yn = 'Y'
+	 order by to_number(work_bef_stage)
+  </select>
+
+  <select id="isExistBtsBillCycleMM" parameterClass="paramsMap" resultClass="boolean">
+	select count(1) isExist
+	  from tb_btsbillcycle
+	 where inv_yyyymm = #inv_yyyymm#
+	   and inv_flag = #inv_flag# 
+  </select>
+
+  <parameterMap id="PARAM_SP_BTSSENDSMS" class="paramsMap">
+	<parameter property="iSndPhnId" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iRcvPhnId" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iCallback" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iSndMsg" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="oReturnStatus" mode="OUT" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="oErrMsg" mode="OUT" javaType="String" jdbcType="VARCHAR"/>
+  </parameterMap>
+  
+  <procedure id="SP_BTSSENDSMS" parameterMap="PARAM_SP_BTSSENDSMS">
+    { CALL SP_BTSSENDSMS(?, ?, ?, ?, ?, ?) }
+  </procedure>
+
+  <parameterMap id="PARAM_SP_BTS" class="paramsMap">
+	<parameter property="iInvYyyymm" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iInvFlag" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iStDate" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iEndDate" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iWorkCd" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iWorkDt" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="iWorkTm" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="oReturnStatus" mode="OUT" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="oErrMsg" mode="OUT" javaType="String" jdbcType="VARCHAR"/>
+  </parameterMap>
+  
+  <!-- 00.bts_cust_trans -->
+  <procedure id="SP_BTS_CUST_TRANS_KT_TEST" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_CUST_TRANS_KT_TEST(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <procedure id="SP_BTS_CUST_TRANS_KT" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_CUST_TRANS_KT(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+      <procedure id="SP_BTS_CUST_TRANS" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_CUST_TRANS(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 01.bts_inv_extc -->
+  <procedure id="SP_BTS_INV_EXTC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_INV_EXTC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 03.bts_mm_fixamtc -->
+  <procedure id="SP_BTS_MM_FIXAMTC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_MM_FIXAMTC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 04.bts_air_mm_fixamtc -->
+  <procedure id="SP_BTS_AIR_MM_FIXAMTC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_AIR_MM_FIXAMTC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 05.bts_loss_damages -->
+  <procedure id="SP_BTS_USEFEE_EXTC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_USEFEE_EXTC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 06.bts_sa_add_invc -->
+  <procedure id="SP_BTS_SA_ADD_INVC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_SA_ADD_INVC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 07.bts_nonpmt_finc -->
+  <procedure id="SP_BTS_NONPMT_FINC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_NONPMT_FINC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 08.bts_chrg_dcc -->
+  <procedure id="SP_BTS_CHRG_DCC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_CHRG_DCC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 09.bts_chrg_adjc -->
+  <procedure id="SP_BTS_CHRG_ADJC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_CHRG_ADJC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 10.bts_agree_dcc -->
+  <procedure id="SP_BTS_AGREE_DCC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_AGREE_DCC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 11.bts_small_non_bill -->
+  <procedure id="SP_BTS_LOSS_DAMAGES" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_LOSS_DAMAGES(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 16.bts_tax_autoeftc -->
+  <procedure id="SP_BTS_TAX_AUTOEFTC" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_TAX_AUTOEFTC(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 17.bts_small_non_bill -->
+  <procedure id="SP_BTS_SMALL_NON_BILL" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_SMALL_NON_BILL(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>
+  
+  <!-- 18.bts_add_bill -->
+  <procedure id="SP_BTS_ADD_BILL" parameterMap="PARAM_SP_BTS">
+    { CALL SP_BTS_ADD_BILL(?, ?, ?, ?, ?, ?, ?, ?, ?) }
+  </procedure>  
+
+  <parameterMap id="PARAM_BTSSTICKCARE_ADD" class="paramsMap">
+	<parameter property="iProcerId" mode="IN" javaType="String" jdbcType="VARCHAR"/>
+	<parameter property="oResultCnt" mode="OUT" javaType="int" jdbcType="NUMERIC"/>
+	<parameter property="oResultMsg" mode="OUT" javaType="String" jdbcType="VARCHAR"/>
+  </parameterMap>
+  
+  <procedure id="SP_BTSSTICKCARE_ADD" parameterMap="PARAM_BTSSTICKCARE_ADD">
+    { CALL SP_BTSSTICKCARE_ADD(?, ?, ?) }
+  </procedure>
+
+  <delete id="deleteBillInfoTemp" >
+  	DELETE FROM TB_BTSKTFBANCHRG_KOS_TEMP
+  </delete>
+  
+  <delete id="deleteKtfBanTemp" >
+  	DELETE FROM TB_CSAKTFBAN_TEMP
+  </delete> 
+  
+  <insert id="createBillInfo" parameterClass="paramsMap">
+	INSERT INTO TB_BTSKTFBANCHRG_KOS_TEMP (INV_YYYYMM,
+	                                     BAN,
+	                                     ACRND_ITEM_ID,
+	                                     ITEM_VAL,
+	                                     REG_ID,
+	                                     REG_DATE,
+	                                     MASTER_NCN,
+	                                     CTN)
+	     VALUES (#invYyyyMm#,
+	             #billInfoNo#,
+	             TRIM (#chageAcrndItemId#),
+	             #chageDcBefAmt#,
+	             'DEMON',
+	             SYSDATE,
+	             TRIM (#billRefRepSvcContId#),
+	             TRIM (#billRefMobileNo#))  
+  </insert>
+  
+  <insert id="insertKtfBanTempForNDEV" >
+	INSERT /*+ APPEND PARALLEL(AA 2) */ INTO TB_CSAKTFBAN_TEMP AA
+	SELECT * FROM TB_CSAKTFBAN_DAMO@NEW_NBILL
+  </insert>
+  
+  <insert id="insertKtfBanTempForNBILL" >
+	INSERT /*+ APPEND PARALLEL(AA 2) */ INTO TB_CSAKTFBAN_TEMP AA
+	SELECT * FROM TB_CSAKTFBAN_DAMO
+  </insert>
+  
+  <delete id="deleteKtfAbnorm" parameterClass="paramsMap">
+  	DELETE 
+  	  FROM TB_BTSKTFABNORM
+  	 WHERE INV_YYYYMM = #inv_yyyymm#
+  </delete>
+  
+  <delete id="deleteKtfBanChrg" parameterClass="paramsMap">
+  	DELETE 
+  	  FROM TB_BTSKTFBANCHRG
+  	 WHERE INV_YYYYMM = #inv_yyyymm#
+  </delete>
+  
+  <insert id="insertKtfBanChrg" parameterClass="paramsMap">
+	INSERT INTO TB_BTSKTFBANCHRG
+	(
+	 INV_YYYYMM,
+	 BAN,
+	 MAP_ID,
+	 SA_ID,
+	 OCC_AMT,
+	 REG_DATE,
+	 PROC_ID
+	)
+	SELECT /*+ORDRED USE_HASH(A B) FULL(A) PARALLEL(A 8) */
+	       B.INV_YYYYMM,
+	       B.BAN,
+	       B.MAP_ID,
+	       A.SA_ID,
+	       B.OCC_AMT,
+	       SYSDATE,
+	       'DEMON'
+	 FROM TB_CSAKTFBAN_TEMP A,
+	      (
+	       SELECT /*+ORDERED USE_HASH(A B)  FULL(B) PARALLEL(B 8)*/
+	              B.INV_YYYYMM,
+	              B.BAN,
+	              A.MAP_ID,
+	              B.ITEM_VAL OCC_AMT
+	         FROM TB_BTSKTFITEMMAP_KOS A,
+	              TB_BTSKTFBANCHRG_KOS_TEMP B
+	        WHERE A.ACRND_ITEM_ID = B.ACRND_ITEM_ID
+	          AND A.MAP_TYPE = 'INV'
+	          AND A.TOBE_YN = 'Y'
+	          AND B.INV_YYYYMM = #inv_yyyymm#
+	          AND B.ITEM_VAL != 0
+	          AND ROWNUM &gt; 0
+	      ) B
+	WHERE A.BAN = B.BAN
+  </insert>
+
+  <insert id="insertKtfAbnorm" parameterClass="paramsMap">
+	INSERT INTO TB_BTSKTFABNORM
+	SELECT DISTINCT B.INV_YYYYMM,
+	       B.BAN,
+	       '04',
+	       1 OCC_VAL,
+	       SYSDATE,
+	       'DEMON'
+	 FROM TB_CSAKTFBAN_TEMP    A,
+	      (
+	       SELECT /*+ORDERED USE_HASH(A B) */
+	              B.INV_YYYYMM,
+	              B.BAN,
+	              A.MAP_ID,
+	              B.ITEM_VAL OCC_AMT
+	         FROM TB_BTSKTFITEMMAP_KOS A,
+	              TB_BTSKTFBANCHRG_KOS_TEMP B
+	        WHERE A.ACRND_ITEM_ID = B.ACRND_ITEM_ID
+	          AND A.MAP_TYPE = 'INV'
+	          AND A.TOBE_YN  = 'Y'
+	          AND B.INV_YYYYMM = #inv_yyyymm#
+	          AND B.ITEM_VAL != 0
+	      ) B
+	WHERE A.BAN(+) = B.BAN
+	  AND A.SA_ID IS NULL
+  </insert>
+
+  <resultMap id="rGetKosBanChrgReportList" class="resultMap">
+ 	<result property="INV_YYYYMM" column="INV_YYYYMM"/>
+	<result property="GUBUN" column="GUBUN"/>
+	<result property="CNT" column="CNT"/>
+	<result property="ITEM_VAL" column="ITEM_VAL"/>
+  </resultMap>
+
+  <select id="getKosBanChrgReportList" parameterClass="paramsMap" resultMap="rGetKosBanChrgReportList">
+	SELECT inv_yyyymm, gubun, cnt, item_val
+	  FROM (  
+		select a.inv_yyyymm, '전체' gubun, count(1) cnt, sum(item_val) item_val
+		  from TB_BTSKTFBANCHRG_KOS_TEMP a
+		       left outer join TB_BTSKOSBILLCD b
+		       on a.acrnd_item_id = b.acrnd_item_id
+		       and b.apply_expir_mm = '999912'
+		 where 1=1
+		 group by a.inv_yyyymm
+		 union all
+		select a.inv_yyyymm, '반영' gubun, count(1) cnt, sum(item_val)
+		  from TB_BTSKTFBANCHRG_KOS_TEMP a
+		       inner join tb_btsktfitemmap_kos b
+		       on a.ACRND_ITEM_ID = b.ACRND_ITEM_ID
+		       and b.MAP_TYPE = 'INV'
+		       and b.TOBE_YN = 'Y'
+		       inner join TB_CSAKTFBAN_TEMP c
+		       on A.BAN = c.BAN
+		 where 1=1
+		 group by a.inv_yyyymm
+		 union all
+		select a.inv_yyyymm, '이상내역' gubun, count(distinct a.ban) cnt, sum(item_val)
+		  from TB_BTSKTFBANCHRG_KOS_TEMP a
+		       inner join tb_btsktfitemmap_kos b
+		       on a.ACRND_ITEM_ID = b.ACRND_ITEM_ID
+		       and b.MAP_TYPE = 'INV'
+		       and b.TOBE_YN = 'Y'
+		       left outer join TB_CSAKTFBAN_TEMP c
+		       on A.BAN = c.BAN
+		 where 1=1
+		   and c.ban is null
+		 group by a.inv_yyyymm
+		 union all
+		select #inv_yyyymm#, '누락' gubun, count(1) cnt, sum(item_val)
+		  from TB_BTSKTFBANCHRG_KOS_TEMP a
+		       left outer join tb_btsktfitemmap_kos b
+		       on a.ACRND_ITEM_ID = b.ACRND_ITEM_ID
+		       and b.MAP_TYPE = 'INV'
+		       and b.TOBE_YN = 'Y'
+		 where 1=1
+		   and b.acrnd_item_id is null
+	)
+  </select>
+  
+</sqlMap>  
