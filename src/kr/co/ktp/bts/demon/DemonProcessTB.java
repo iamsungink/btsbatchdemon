@@ -10,7 +10,7 @@ import kr.co.ktp.bts.util.DateTime;
 
 public class DemonProcessTB extends ADemonProcess{
 	
-	private String PROCESS_NAME = "[ÁßÁ¡°í°´ ARPU ¹× »ç¿ë·® ÃßÀÌ] ";
+	private String PROCESS_NAME = "[ì¤‘ì ê³ ê° ARPU ë° ì‚¬ìš©ëŸ‰ ì¶”ì´] ";
 	
 	private String[][] arrProcedure = null;
 	
@@ -34,15 +34,15 @@ public class DemonProcessTB extends ADemonProcess{
 				trid = Configuration.getConfig("DEMON.SVR.TRID."+demonInfo.getStrWorkCd());
 				proc = Configuration.getConfig("DEMON.SVR.PROC."+demonInfo.getStrWorkCd());
 			} catch (Exception e) {
-				throw new Exception(this.getClass().getName() + " ÃÊ±âÈ­ Error : Configuration.getConfig() : " + e.toString());
+				throw new Exception(this.getClass().getName() + " ì´ˆê¸°í™” Error : Configuration.getConfig() : " + e.toString());
 			}
 			arrProcedure[0] = trid.split("/");
 			arrProcedure[1]	= proc.split("/");
 			if(arrProcedure[0].length != arrProcedure[1].length){
-				throw new Exception("ConfigurationÀÇ DEMON.SVR.TRID.TA ¿Í DEMON.SVR.PROC.TA ÀÇ ¼ö´Â °°¾Æ¾ß ÇÕ´Ï´Ù");
+				throw new Exception("Configurationì˜ DEMON.SVR.TRID.TA ì™€ DEMON.SVR.PROC.TA ì˜ ìˆ˜ëŠ” ê°™ì•„ì•¼ í•©ë‹ˆë‹¤");
 			}
 		} catch (Exception e) {
-			throw new Exception(this.getClass().getName() + " ÃÊ±âÈ­ Error : Configuration.getConfig() : " + e.toString());
+			throw new Exception(this.getClass().getName() + " ì´ˆê¸°í™” Error : Configuration.getConfig() : " + e.toString());
 		}
 		
 	}
@@ -55,7 +55,7 @@ public class DemonProcessTB extends ADemonProcess{
 	
 	/**
 	//=============================================================================
-	// [ÁßÁ¡°í°´ ARPU ¹× »ç¿ë·® ÃßÀÌ]
+	// [ì¤‘ì ê³ ê° ARPU ë° ì‚¬ìš©ëŸ‰ ì¶”ì´]
 	//------------------------------------------------------------------------------
     //  IDX | FIELD             | VALUE
 	//------------------------------------------------------------------------------

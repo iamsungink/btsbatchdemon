@@ -28,7 +28,7 @@ import kr.co.ktp.bts.util.FtpUtil;
 
 public class DemonProcessIB extends ADemonProcess{
 	
-	private String PROCESS_NAME = "[KOSÃ»±¸] ";
+	private String PROCESS_NAME = "[KOSì²­êµ¬] ";
 	
 	private String inv_yyyymm = null;
 	private String inv_flag = null;
@@ -56,7 +56,7 @@ public class DemonProcessIB extends ADemonProcess{
 			strFileExtention = (String) jsonObj.get("fileExtention");
 			
 		}catch (Exception e) {
-			throw new Exception(this.getClass().getName() + " ÃÊ±âÈ­ Error : Configuration.getConfig() : " + e.toString());
+			throw new Exception(this.getClass().getName() + " ì´ˆê¸°í™” Error : Configuration.getConfig() : " + e.toString());
 		}
 		
 	}
@@ -69,7 +69,7 @@ public class DemonProcessIB extends ADemonProcess{
 	
 	/**
 	//=============================================================================
-	// KOSÃ»±¸
+	// KOSì²­êµ¬
 	//------------------------------------------------------------------------------
     //  IDX | FIELD             | VALUE
 	//------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ public class DemonProcessIB extends ADemonProcess{
 			
 			int k=0;
 			String strFileNm = "";
-			//ÀÛ¾÷ ÆÄÀÏ °æ·Î ³»ÀÇ ÆÄÀÏ °Ë»öÇÏ¿© Æ¯Á¤ Configuration.getConfig("DEMON.SVR.PREF.IA") ·Î ½ÃÀÛÇÏ´Â ÆÄÀÏÀ» Ã£¾Æ ¹èÄ¡¸¦ ¼öÇà .
+			//ì‘ì—… íŒŒì¼ ê²½ë¡œ ë‚´ì˜ íŒŒì¼ ê²€ìƒ‰í•˜ì—¬ íŠ¹ì • Configuration.getConfig("DEMON.SVR.PREF.IA") ë¡œ ì‹œì‘í•˜ëŠ” íŒŒì¼ì„ ì°¾ì•„ ë°°ì¹˜ë¥¼ ìˆ˜í–‰ .
 			for(fileList = (FileUtil.getFileList(new File(strFilePath), true)).iterator();fileList.hasNext();){
 				strFileNm = (String)fileList.next();
 				printDemonLog("["+k+"]-------------------------------------------------------------------------");
@@ -191,9 +191,9 @@ public class DemonProcessIB extends ADemonProcess{
 			
 			if(hostname.startsWith("NBILL")){
 				if(!executeFtpFileMove()){
-					printDemonLog("NBILL¿¡¼­ NDEV Server·Î ÆÄÀÏÀ» ÀÌµ¿ÇÏ¿´½À´Ï´Ù");
+					printDemonLog("NBILLì—ì„œ NDEV Serverë¡œ íŒŒì¼ì„ ì´ë™í•˜ì˜€ìŠµë‹ˆë‹¤");
 				}else{
-					printDemonLog("NBILL¿¡¼­ NDEV Server·Î ÆÄÀÏÀ» ÀÌµ¿ÇÏ´ø Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù");
+					printDemonLog("NBILLì—ì„œ NDEV Serverë¡œ íŒŒì¼ì„ ì´ë™í•˜ë˜ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤");
 				}
 			}
 			
@@ -225,12 +225,12 @@ public class DemonProcessIB extends ADemonProcess{
 			int k=0;
 			String strFileNm = "";
 			
-			//ÀÛ¾÷ ÆÄÀÏ °æ·Î ³»ÀÇ ÆÄÀÏ °Ë»öÇÏ¿© Æ¯Á¤ Configuration.getConfig("FTP.SVR.PREF.IA") ·Î ½ÃÀÛÇÏ´Â ÆÄÀÏÀ» Ã£¾Æ ¹èÄ¡¸¦ ¼öÇà .
+			//ì‘ì—… íŒŒì¼ ê²½ë¡œ ë‚´ì˜ íŒŒì¼ ê²€ìƒ‰í•˜ì—¬ íŠ¹ì • Configuration.getConfig("FTP.SVR.PREF.IA") ë¡œ ì‹œì‘í•˜ëŠ” íŒŒì¼ì„ ì°¾ì•„ ë°°ì¹˜ë¥¼ ìˆ˜í–‰ .
 			for(fileList = (FileUtil.getFileList(new File(strLocalPath), true)).iterator();fileList.hasNext();){
 				strFileNm = (String)fileList.next();
 				printDemonLog("Local FileNm" + " : "+strFileNm +"("+strFileNmPrefix+":"+strFileNm.startsWith(strFileNmPrefix) +")");
 				if(strFileNm.startsWith(strFileNmPrefix)){
-					System.out.println(strFileNm + " ÆÄÀÏÀ» ¾÷·Îµå ÇÕ´Ï´Ù.");
+					System.out.println(strFileNm + " íŒŒì¼ì„ ì—…ë¡œë“œ í•©ë‹ˆë‹¤.");
 					
 					InputStream input;
 					input = new FileInputStream(strLocalPath+strFileNm);

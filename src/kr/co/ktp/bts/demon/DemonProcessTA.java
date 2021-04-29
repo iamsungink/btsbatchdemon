@@ -10,7 +10,7 @@ import kr.co.ktp.bts.util.DateTime;
 
 public class DemonProcessTA extends ADemonProcess{
 	
-	private String PROCESS_NAME = "√—ªÍ ";
+	private String PROCESS_NAME = "Ï¥ùÏÇ∞ ";
 	
 	private List<Map<String, Object>> btcBatPgmList  = null;
 	
@@ -61,7 +61,7 @@ public class DemonProcessTA extends ADemonProcess{
 	
 	/**
 	//=============================================================================
-	// √—ªÍ
+	// Ï¥ùÏÇ∞
 	//------------------------------------------------------------------------------
     //  IDX | FIELD             | VALUE
 	//------------------------------------------------------------------------------

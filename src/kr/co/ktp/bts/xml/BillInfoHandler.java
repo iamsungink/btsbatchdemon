@@ -29,17 +29,17 @@ public class BillInfoHandler extends DefaultHandler{
 	//As we complete one billInfo block in XML, we will push the BillInfoDTO instance in billInfoList
 	private Stack objectStack = new Stack();
 	
-	//XML ¹®¼­ÀÇ ½ÃÀÛÀÌ ÀÎ½ÄµÇ¾úÀ» ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	//XML ë¬¸ì„œì˜ ì‹œìž‘ì´ ì¸ì‹ë˜ì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void startDocument() {
 		//System.out.println("Start Document");
 	}
 	
-	//XML ¹®¼­ÀÇ ³¡ÀÌ ÀÎ½ÄµÇ¾úÀ» ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	//XML ë¬¸ì„œì˜ ëì´ ì¸ì‹ë˜ì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void endDocument() {
 		//System.out.println("End Document");
 	}
 	
-	// ¿¤¸®¸ÕÆ®ÀÇ ½ÃÀÛÀ» ÀÎ½ÄÇß¾úÀ» ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	// ì—˜ë¦¬ë¨¼íŠ¸ì˜ ì‹œìž‘ì„ ì¸ì‹í–ˆì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void startElement(String uri, String localName, String qName, Attributes attributes) {
 		//System.out.println("[startElement] uri : " + uri + ", localName : " + localName + ", qName : " + qName + ", attributes.getLength() : " + attributes.getLength());
 		
@@ -70,7 +70,7 @@ public class BillInfoHandler extends DefaultHandler{
 		
 	}
 	
-	// ¿¤¸®¸ÕÆ®ÀÇ ³¡À» ÀÎ½ÄÇß¾úÀ» ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	// ì—˜ë¦¬ë¨¼íŠ¸ì˜ ëì„ ì¸ì‹í–ˆì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void endElement(String uri, String localName, String qName) {
 		//System.out.println("[endElement] uri : " + uri + ", localName : " + localName + ", qName : " + qName);
 		
@@ -92,7 +92,7 @@ public class BillInfoHandler extends DefaultHandler{
 		this.elementStack.pop();
 	}
 	
-	// °¢ elementÀÇ °ª (ÀÎ½ÄµÈ ¹®ÀÚÀÇ °¢ ¼¼±×¸ÕÆ®¿¡ ´ëÇØ¼­ È£Ãâ)
+	// ê° elementì˜ ê°’ (ì¸ì‹ëœ ë¬¸ìžì˜ ê° ì„¸ê·¸ë¨¼íŠ¸ì— ëŒ€í•´ì„œ í˜¸ì¶œ)
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		//System.out.println("grandElement >> " + prevElement(-3) + ", parentElement >> " + prevElement(-2) +", currentElement() >> " + currentElement() + ", currentAttributeValue() >> " + currentAttributeValue() + ", new String(ch, start, length) : " + new String(ch, start, length));
 		

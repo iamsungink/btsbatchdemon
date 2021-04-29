@@ -1,19 +1,19 @@
 package kr.co.ktp.bts.batch;
 
 public class BatchWorkInfo implements Cloneable{
-	private String		strModuleID			= null;		// ¹èÄ¡ÀÛ¾÷ ¸ğµâ ID
-	private String		strWorkCd			= null;		// ¹èÄ¡ÀÛ¾÷±¸ºĞÄÚµå
-	private String		strWorkDt			= null;		// ¹èÄ¡ÀÛ¾÷ ½ÇÇàÀÏ
-	private String		strWorkTm			= null;		// ¹èÄ¡ÀÛ¾÷ ½ÇÇà½Ã°£
-	private String		strBrnCd			= null;		// ¼¾ÅÍÄÚµå (ÀÛ¾÷ÀÚ)
-	private String		strUserCd			= null;		// »ç¿ëÀÚÄÚµå (ÀÛ¾÷ÀÚ)
+	private String		strModuleID			= null;		// ë°°ì¹˜ì‘ì—… ëª¨ë“ˆ ID
+	private String		strWorkCd			= null;		// ë°°ì¹˜ì‘ì—…êµ¬ë¶„ì½”ë“œ
+	private String		strWorkDt			= null;		// ë°°ì¹˜ì‘ì—… ì‹¤í–‰ì¼
+	private String		strWorkTm			= null;		// ë°°ì¹˜ì‘ì—… ì‹¤í–‰ì‹œê°„
+	private String		strBrnCd			= null;		// ì„¼í„°ì½”ë“œ (ì‘ì—…ì)
+	private String		strUserCd			= null;		// ì‚¬ìš©ìì½”ë“œ (ì‘ì—…ì)
 	private String		strInvYyyyMm		= null;
 	private String		strInvFlag			= null;
-	private String		strSrchStrtDt		= null;		// Á¶È¸ ½ÃÀÛÀÏÀÚ (ÃßÃâµîÀÇ ÀÛ¾÷¿¡¼­ ±â°£ÀÇ ½ÃÀÛ¿¡ ÇØ´ç)
-	private String		strSrchEndDt		= null;		// Á¶È¸ Á¾·áÀÏÀÚ (ÃßÃâµîÀÇ ÀÛ¾÷¿¡¼­ ±â°£ÀÇ Á¾·á¿¡ ÇØ´ç)
-	private String		strFilePath			= null;		// ÀÛ¾÷ÆÄÀÏ °æ·Î
-	private String		strFileNm			= null;		// ÀÛ¾÷ÆÄÀÏ ¸í
-	private String		strFilePathBack		= null;		// ¹é¾÷ÆÄÀÏ °æ·Î
+	private String		strSrchStrtDt		= null;		// ì¡°íšŒ ì‹œì‘ì¼ì (ì¶”ì¶œë“±ì˜ ì‘ì—…ì—ì„œ ê¸°ê°„ì˜ ì‹œì‘ì— í•´ë‹¹)
+	private String		strSrchEndDt		= null;		// ì¡°íšŒ ì¢…ë£Œì¼ì (ì¶”ì¶œë“±ì˜ ì‘ì—…ì—ì„œ ê¸°ê°„ì˜ ì¢…ë£Œì— í•´ë‹¹)
+	private String		strFilePath			= null;		// ì‘ì—…íŒŒì¼ ê²½ë¡œ
+	private String		strFileNm			= null;		// ì‘ì—…íŒŒì¼ ëª…
+	private String		strFilePathBack		= null;		// ë°±ì—…íŒŒì¼ ê²½ë¡œ
 	public BatchWorkInfo(
 							String strModuleID,
 							String strWorkCd,

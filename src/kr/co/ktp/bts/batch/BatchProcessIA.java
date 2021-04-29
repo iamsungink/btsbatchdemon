@@ -31,7 +31,7 @@ public class BatchProcessIA extends ABatchProcess{
 	public void initialize(String[] args) {
 		/**
 		//=============================================================================
-		// [ÇÁ·Î±×·¥¸í]
+		// [í”„ë¡œê·¸ë¨ëª…]
 		//------------------------------------------------------------------------------
 	    //  IDX | FIELD             | VALUE
 		//------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ public class BatchProcessIA extends ABatchProcess{
 	@Override
 	public void process() {
 		if(batchWorkInfo==null){
-			printBatchLog(PROCESSID+".process() : BatchWorkInfo ¸¦ ÃÊ±âÈ­ÇÏÁö ¸øÇÏ¿´½À´Ï´Ù");
+			printBatchLog(PROCESSID+".process() : BatchWorkInfo ë¥¼ ì´ˆê¸°í™”í•˜ì§€ ëª»í•˜ì˜€ìŠµë‹ˆë‹¤");
 			System.exit(0);
 		}
 		printBatchLog("");
@@ -93,7 +93,7 @@ public class BatchProcessIA extends ABatchProcess{
 				throw new Exception(PROCESSID+".executeBatch() : Batch running error!");
 			}
 			
-			//ÆÄÀÏ¹é¾÷
+			//íŒŒì¼ë°±ì—…
 			backupFile(new File(batchWorkInfo.getStrFilePath()+BATCH_RUNNING + "_"+batchWorkInfo.getStrFileNm()), new File(batchWorkInfo.getStrFilePathBack()+batchWorkInfo.getStrFileNm()));
 			
 			printBatchLog(PROCESSID+" Result : [ SUCCESS ]");

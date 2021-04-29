@@ -14,44 +14,44 @@ public class XMLParserHandler extends DefaultHandler {
 	
 	private ArrayList<String> tagList  = new ArrayList<String>();
 	
-	// XML ¹®¼­ÀÇ ½ÃÀÛÀÌ ÀÎ½ÄµÇ¾úÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	// XML ë¬¸ì„œì˜ ì‹œì‘ì´ ì¸ì‹ë˜ì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void startDocument() {
 		//System.out.println("Start Document");
 	}
 	
-	// XML ¹®¼­ÀÇ ³¡ÀÌ ÀÎ½ÄµÇ¾úÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	// XML ë¬¸ì„œì˜ ëì´ ì¸ì‹ë˜ì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void endDocument() {
 		//System.out.println("End Document");
 	}
 	
-	// ¿¤¸®¸ÕÆ®ÀÇ ½ÃÀÛÀ» ÀÎ½ÄÇß¾úÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	// ì—˜ë¦¬ë¨¼íŠ¸ì˜ ì‹œì‘ì„ ì¸ì‹í–ˆì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void startElement(String uri, String localName, String qname, Attributes attr) {
 		System.out.println("[startElement] uri : " + uri + ", localName : " + localName + ", qname : " + qname + ", attr.getLength() : " + attr.getLength());
 		
-		elementName = qname;    //element¸íÀ» ¸â¹ö º¯¼ö¿¡ ³Ö¾î µĞ´Ù.
+		elementName = qname;    //elementëª…ì„ ë©¤ë²„ ë³€ìˆ˜ì— ë„£ì–´ ë‘”ë‹¤.
 		
 		for(int i=0;i<attr.getLength();i++){
 			
-			String attrName=attr.getQName(i); // Ã¹¹øÂ° ÅÂ±× ÀÓÀÇ ¼³Á¤
+			String attrName=attr.getQName(i); // ì²«ë²ˆì§¸ íƒœê·¸ ì„ì˜ ì„¤ì •
 			String attrValue=attr.getValue(attrName);
 			
-			System.out.println("¼Ó¼º°ª============= attr.getQName("+i+") : " + attrName + ", attr.getValue(attrName) : " + attrValue);
+			System.out.println("ì†ì„±ê°’============= attr.getQName("+i+") : " + attrName + ", attr.getValue(attrName) : " + attrValue);
 			
 		}
 		
-		sBuffer.setLength(0);    // buffer ÃÊ±âÈ­
+		sBuffer.setLength(0);    // buffer ì´ˆê¸°í™”
 	}
 	
-	// ¿¤¸®¸ÕÆ®ÀÇ ³¡À» ÀÎ½ÄÇß¾úÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®
+	// ì—˜ë¦¬ë¨¼íŠ¸ì˜ ëì„ ì¸ì‹í–ˆì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬
 	public void endElement(String uri, String localName, String qname) {
 		System.out.println("[endElement] uri : " + uri + ", localName : " + localName + ", qname : " + qname);
 	}
 	
-	// °¢ elementÀÇ °ª (ÀÎ½ÄµÈ ¹®ÀÚÀÇ °¢ ¼¼±×¸ÕÆ®¿¡ ´ëÇØ¼­ È£Ãâ)
+	// ê° elementì˜ ê°’ (ì¸ì‹ëœ ë¬¸ìì˜ ê° ì„¸ê·¸ë¨¼íŠ¸ì— ëŒ€í•´ì„œ í˜¸ì¶œ)
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		String strValue = "";
 		
-		// elementÀÇ °ªÀ» ±¸ÇÏ±â À§ÇØ¼­´Â buffer¿¡ ÀÎ½ÄµÈ °¢ ¹®ÀÚ¸¦ start¿¡¼­ length¸¸Å­ appendÇÑ´Ù.
+		// elementì˜ ê°’ì„ êµ¬í•˜ê¸° ìœ„í•´ì„œëŠ” bufferì— ì¸ì‹ëœ ê° ë¬¸ìë¥¼ startì—ì„œ lengthë§Œí¼ appendí•œë‹¤.
 		sBuffer.append(new String(ch, start, length));
 		strValue = sBuffer.toString().trim();
 		

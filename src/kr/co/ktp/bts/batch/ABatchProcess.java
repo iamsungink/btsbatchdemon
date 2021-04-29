@@ -31,36 +31,36 @@ public abstract class ABatchProcess {
 	 * Abstract Method
 	 ---------------------------------------------------------------------------------------------------------*/
 	/**
-	 * ¹èÄ¡ÀÛ¾÷ ÃÊ±âÈ­
-	 * @see		1. arguments·Î ³Ñ°Ü¹ŞÀº °ªÀ» ÀÌ¿ëÇÏ¿© BatchWorkInfo ¼ÂÆÃ.
+	 * ë°°ì¹˜ì‘ì—… ì´ˆê¸°í™”
+	 * @see		1. argumentsë¡œ ë„˜ê²¨ë°›ì€ ê°’ì„ ì´ìš©í•˜ì—¬ BatchWorkInfo ì…‹íŒ….
 	 */
 	public abstract void initialize(String[] args);
 	/**
-	 * ÇÁ·Î¼¼½º ½ÇÇà Method
-	 * @see		1. ABatchProcess¸¦ FactoringÇÑ Å¬·¹½º´Â process() Method¸¦ ÀÌ¿ëÇÏ¿© ½ÇÇàÇÔ.
+	 * í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ Method
+	 * @see		1. ABatchProcessë¥¼ Factoringí•œ í´ë ˆìŠ¤ëŠ” process() Methodë¥¼ ì´ìš©í•˜ì—¬ ì‹¤í–‰í•¨.
 	 */
 	public abstract void process();
 	/**
-	 * ¹èÄ¡ÀÛ¾÷ ½ÇÇà
-	 * @return		true:¼º°ø, false:½ÇÆĞ
+	 * ë°°ì¹˜ì‘ì—… ì‹¤í–‰
+	 * @return		true:ì„±ê³µ, false:ì‹¤íŒ¨
 	 * @throws BatchException
 	 */
 	public abstract boolean executeBatch() throws Exception;
 	/**
-	 * ÇÁ·Î½ÃÁ®ÀÛ¾÷ ½ÇÇà
-	 * @return		true:¼º°ø, false:½ÇÆĞ
+	 * í”„ë¡œì‹œì ¸ì‘ì—… ì‹¤í–‰
+	 * @return		true:ì„±ê³µ, false:ì‹¤íŒ¨
 	 * @throws BatchException
 	 */
 	public abstract boolean executeBatchProcedure() throws Exception;
 
 	/**
-	 * ÆÄÀÏ¸í º¯°æ
-	 * @param sourceFile	: ¿øº»ÆÄÀÏ
-	 * @param targetFile	: ´ë»óÆÄÀÏ
+	 * íŒŒì¼ëª… ë³€ê²½
+	 * @param sourceFile	: ì›ë³¸íŒŒì¼
+	 * @param targetFile	: ëŒ€ìƒíŒŒì¼
 	 * @throws BatchException
-	 * @see		1. ÆÄÀÏÀÌ À§Ä¡ÇÑ Æú´õ¿¡¼­ ÀÛ¾÷À» ÇÒ °æ¿ì, ÀÛ¾÷ÀÌ ´Ù½Ã ½ÇÇàµÇ´Â Çö»óÀ» ¹èÁ¦.
-	 * 			2. ÆÄÀÏ¸í ÆÄÀÏ¸íÀÇ ¾Õ¿¡ ÀÛ¾÷ Áß Ç¥½Ã ('0_')¸¦ ºÙ¿© ´Ù½Ã ÀÛ¾÷ÀÌ ¾ÈµÇµµ·Ï Ã³¸®.
-	 * 			3. ÀÛ¾÷À» ÆÄÀÏ¸íÀÇ ¾Õ¿¡ ÀÛ¾÷ Áß Ç¥½Ã ('0_')ÀÌ ºÙÁö ¾ÊÀº ÆÄÀÏ¸¸ ½ÇÇàµÊ.
+	 * @see		1. íŒŒì¼ì´ ìœ„ì¹˜í•œ í´ë”ì—ì„œ ì‘ì—…ì„ í•  ê²½ìš°, ì‘ì—…ì´ ë‹¤ì‹œ ì‹¤í–‰ë˜ëŠ” í˜„ìƒì„ ë°°ì œ.
+	 * 			2. íŒŒì¼ëª… íŒŒì¼ëª…ì˜ ì•ì— ì‘ì—… ì¤‘ í‘œì‹œ ('0_')ë¥¼ ë¶™ì—¬ ë‹¤ì‹œ ì‘ì—…ì´ ì•ˆë˜ë„ë¡ ì²˜ë¦¬.
+	 * 			3. ì‘ì—…ì„ íŒŒì¼ëª…ì˜ ì•ì— ì‘ì—… ì¤‘ í‘œì‹œ ('0_')ì´ ë¶™ì§€ ì•Šì€ íŒŒì¼ë§Œ ì‹¤í–‰ë¨.
 	 */
 	public void renameFile(String strRunFlag) throws Exception{
 		printBatchLog("renameFile(String strRunFlag)");
@@ -79,14 +79,14 @@ public abstract class ABatchProcess {
 	}	
 
 	/**
-	 * ÆÄÀÏ ¹é¾÷Æú´õ·Î ÀÌµ¿
-	 * @param sourceFile	: ¿øº»ÆÄÀÏ
-	 * @param targetFile	: ´ë»óÆÄÀÏ
+	 * íŒŒì¼ ë°±ì—…í´ë”ë¡œ ì´ë™
+	 * @param sourceFile	: ì›ë³¸íŒŒì¼
+	 * @param targetFile	: ëŒ€ìƒíŒŒì¼
 	 * @throws BatchException
-	 * @see		1. ÆÄÀÏ ¿ë·®ÀÌ Ä¿¼­ copyFile()°ú deleteFile()·Î ÀÌµ¿ÀÌ µÇÁö ¾ÊÀ» ¶§.
-	 * 			2. Shell script¸¦ ÀÌ¿ëÇÏ¿© ÆÄÀÏ ÀÌµ¿. (backup µî)
-	 * 			3. moveFile.sh ÆÄÀÏÀ» »õ·Î ÀÛ¼ºÇßÀ» ¶§ ±ÇÇÑ¹®Á¦ ¹ß»ı ÇÔ.
-	 * 			4. 3Ç×À» Çà°áÇÏ±â À§ÇØ chmod¸¦ ½ÇÇàÇÏÁö¸¸ ¿©ÀüÈ÷ ±ÇÇÑÀ» ¹Ù²ÙÁö ¸øÇÔ. 
+	 * @see		1. íŒŒì¼ ìš©ëŸ‰ì´ ì»¤ì„œ copyFile()ê³¼ deleteFile()ë¡œ ì´ë™ì´ ë˜ì§€ ì•Šì„ ë•Œ.
+	 * 			2. Shell scriptë¥¼ ì´ìš©í•˜ì—¬ íŒŒì¼ ì´ë™. (backup ë“±)
+	 * 			3. moveFile.sh íŒŒì¼ì„ ìƒˆë¡œ ì‘ì„±í–ˆì„ ë•Œ ê¶Œí•œë¬¸ì œ ë°œìƒ í•¨.
+	 * 			4. 3í•­ì„ í–‰ê²°í•˜ê¸° ìœ„í•´ chmodë¥¼ ì‹¤í–‰í•˜ì§€ë§Œ ì—¬ì „íˆ ê¶Œí•œì„ ë°”ê¾¸ì§€ ëª»í•¨. 
 	 */
 	public void backupFile(File sourceFile, File targetFile) throws Exception{
 		printBatchLog("backupFile("+sourceFile.toString()+", "+targetFile.toString()+")");
@@ -121,10 +121,10 @@ public abstract class ABatchProcess {
 	}
 	
 	/**
-	 * FTP ÆÄÀÏ Àü¼Û
-	 * @param localPath : Àü¼ÛÇÒ ÆÄÀÏ
-	 * @param remoteFile : Àü¼ÛÇÒ ÆÄÀÏ¸í
-	 * @see 1. Àü¼Û ½Ã Ftp¿¡ remoteFileÀÇ ÀÌ¸§À¸·Î Àü¼ÛµÊ.
+	 * FTP íŒŒì¼ ì „ì†¡
+	 * @param localPath : ì „ì†¡í•  íŒŒì¼
+	 * @param remoteFile : ì „ì†¡í•  íŒŒì¼ëª…
+	 * @see 1. ì „ì†¡ ì‹œ Ftpì— remoteFileì˜ ì´ë¦„ìœ¼ë¡œ ì „ì†¡ë¨.
 	 * @throws Exception
 	 */
 	public void sendFile(String localPath, String remoteFile) throws Exception{
@@ -164,11 +164,11 @@ public abstract class ABatchProcess {
 	
 	
 	/**---------------------------------------------------------------------------------------------------------
-	 * ÆÄÀÏ °ü·Ã
+	 * íŒŒì¼ ê´€ë ¨
 	 ---------------------------------------------------------------------------------------------------------*/
 
 	/**
-	 * File Write : StreamUtilÀ» ÀÌ¿ë.
+	 * File Write : StreamUtilì„ ì´ìš©.
 	 * @param printStream
 	 * @param stringBuffer
 	 */
@@ -179,8 +179,8 @@ public abstract class ABatchProcess {
 	}
 	
     /**
-	 * log¸¦ ±â·ÏÇÔ (BatchÀÛ¾÷À» ÅëÇØ¼­ ÀÛ¾÷µÈ °æ¿ì ÆÄÀÏ¸í ¾Õ¿¡ "BATCH_"¶ó´Â ¹®±¸»ğÀÔÇÏ¿© ·Î±×ÀÛ¼º)
-	 * @param strDev	: ·Î±×±¸ºĞ (START:½ÃÀÛ·Î±× ÀÛ¼º, END:Á¾·á·Î±× ÀÛ¼º, ³ª¸ÓÁö:Working log ÀÛ¼º)
+	 * logë¥¼ ê¸°ë¡í•¨ (Batchì‘ì—…ì„ í†µí•´ì„œ ì‘ì—…ëœ ê²½ìš° íŒŒì¼ëª… ì•ì— "BATCH_"ë¼ëŠ” ë¬¸êµ¬ì‚½ì…í•˜ì—¬ ë¡œê·¸ì‘ì„±)
+	 * @param strDev	: ë¡œê·¸êµ¬ë¶„ (START:ì‹œì‘ë¡œê·¸ ì‘ì„±, END:ì¢…ë£Œë¡œê·¸ ì‘ì„±, ë‚˜ë¨¸ì§€:Working log ì‘ì„±)
 	 */
     protected void printBatchLog(String strDev){
     	if(strDev.equals("START")){

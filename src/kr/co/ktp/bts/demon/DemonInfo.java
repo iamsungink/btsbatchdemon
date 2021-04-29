@@ -8,7 +8,7 @@ public class DemonInfo {
 	private String strINTV		= null;
 	private String strSTRT		= null;
 	private String strENDT		= null;
-	private String strPARAM     = null;     // ÇÁ·Î¼¼½º ±âº» PARAMETER
+	private String strPARAM     = null;     // í”„ë¡œì„¸ìŠ¤ ê¸°ë³¸ PARAMETER
 	private long  longRunIdx	= -1;
 	
 	public DemonInfo(String strWorkCd){

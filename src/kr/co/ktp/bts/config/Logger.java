@@ -73,9 +73,9 @@ public class Logger {
 	}
 	
 	/**
-	 *  Log ±â·Ï
-	 * @param strWorkCd   ¹èÄ¡ÀÛ¾÷ÄÚµå(ÆÄÀÏ¸íÀÇ ¾Õ¿¡ ºÙÀÏ name)
-	 * @param ex        ¿À·ù 
+	 *  Log ê¸°ë¡
+	 * @param strWorkCd   ë°°ì¹˜ì‘ì—…ì½”ë“œ(íŒŒì¼ëª…ì˜ ì•ì— ë¶™ì¼ name)
+	 * @param ex        ì˜¤ë¥˜ 
 	 */
 	public static void writeLog(String strWorkCd, Throwable ex){
 		String today = dateTime();

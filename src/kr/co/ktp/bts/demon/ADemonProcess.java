@@ -9,14 +9,14 @@ import kr.co.ktp.bts.config.Logger;
 import kr.co.ktp.bts.util.DateTime;
 
 public abstract class ADemonProcess implements Runnable{
-	protected static final int DEMON_SUCCESS	= 0;	// »ó¼ö : ÀÛ¾÷¼º°ø
-	protected static final int DEMON_ERROR		= 1;	// »ó¼ö : ¿¡·¯
-	protected static final int DEMON_NORECORD	= 2;	// »ó¼ö : µ¥ÀÌÅÍ ¾øÀ½
-	protected DemonInfo demonInfo 				= null;	// Demon Á¤º¸
+	protected static final int DEMON_SUCCESS	= 0;	// ìƒìˆ˜ : ì‘ì—…ì„±ê³µ
+	protected static final int DEMON_ERROR		= 1;	// ìƒìˆ˜ : ì—ëŸ¬
+	protected static final int DEMON_NORECORD	= 2;	// ìƒìˆ˜ : ë°ì´í„° ì—†ìŒ
+	protected DemonInfo demonInfo 				= null;	// Demon ì •ë³´
 	protected Thread threadDemon 				= null;	// Demon Thread
 
 	/**
-	 * ¹èÄ¡ÀÛ¾÷ ½ÇÇà ÇÁ·Î¼¼½º
+	 * ë°°ì¹˜ì‘ì—… ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤
 	 * @param sbArgs
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public abstract class ADemonProcess implements Runnable{
 				intRtnValue = DEMON_ERROR;
 			}
 		} catch (Exception defaultE) {
-			printDemonLog("ADemonProcess.executeBatchProcess() : Configuration.getConfig(\"BATCH.RUN.XXXXX\") ÀĞ¾î¿ÀÁö ¸øÇÏ¿´½À´Ï´Ù");
+			printDemonLog("ADemonProcess.executeBatchProcess() : Configuration.getConfig(\"BATCH.RUN.XXXXX\") ì½ì–´ì˜¤ì§€ ëª»í•˜ì˜€ìŠµë‹ˆë‹¤");
 			intRtnValue = DEMON_ERROR;
 		}
 

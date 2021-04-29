@@ -19,7 +19,7 @@ public class DemonSvr implements Runnable{
 		try {
 			arrWorkCd = Configuration.getConfig("DEMON.SVR.WORK.CODE").split("_");
 			if(arrWorkCd==null || arrWorkCd.length<1){
-				throw new Exception("Configuration.getConfig(\"DEMON.SVR.WORK.CODE\").split(\"_\") ¸¦ ½ÇÇàÇÏÁö ¸øÇÏ¿´½À´Ï´Ù");
+				throw new Exception("Configuration.getConfig(\"DEMON.SVR.WORK.CODE\").split(\"_\") ë¥¼ ì‹¤í–‰í•˜ì§€ ëª»í•˜ì˜€ìŠµë‹ˆë‹¤");
 			}
 			arrDemonInfo = new DemonInfo[arrWorkCd.length];
 			for(int i=0; i<arrWorkCd.length; i++){
@@ -27,7 +27,7 @@ public class DemonSvr implements Runnable{
 			}
 			longTrdInterval = Integer.parseInt(Configuration.getConfig("DEMON.SVR.SLEP.INTV"))*1000;
 		} catch (Exception defaultE) {
-			printDemonLog("DemonSvrÀ» ÃÊ±âÈ­ÇÏ´ø Áß ¿À·ù°¡ ¹ß»ı : "+defaultE.toString());
+			printDemonLog("DemonSvrì„ ì´ˆê¸°í™”í•˜ë˜ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒ : "+defaultE.toString());
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class DemonSvr implements Runnable{
 		try{
 			while(!blnStopFlag){
 				try{
-					//ÇöÀç½Ã°£
+					//í˜„ì¬ì‹œê°„
 					Calendar calCurrentDate = DateTime.toCalendar(DateTime.getCurrent("yyyyMMddHHmmss"), "yyyyMMddHHmmss");
 					
 					if(arrWorkCd.length>0){
@@ -66,17 +66,17 @@ public class DemonSvr implements Runnable{
 								
 							}catch (Exception defaultE) {
 								printDemonLog("arrDemonInfo["+i+"] : " + arrDemonInfo[i].toString());
-								printDemonLog("DEMON.SVR.XXX."+arrWorkCd[i]+" ÀÇ property°¡ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù"+defaultE.toString());
+								printDemonLog("DEMON.SVR.XXX."+arrWorkCd[i]+" ì˜ propertyê°€ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤"+defaultE.toString());
 							}
 						}
 					
 					}else{
-						printDemonLog("'config.properties'¿¡ 'DEMON.SVR.WORK.CODE'°¡ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù");
+						printDemonLog("'config.properties'ì— 'DEMON.SVR.WORK.CODE'ê°€ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
 					}
 					
 					for(int i=0; i<arrDemonInfo.length; i++){
 						if(arrDemonInfo[i].getStrUSYN().equals("Y")){
-							// ½ÇÇà °¡´ÉÇÑÁö Á¶È¸
+							// ì‹¤í–‰ ê°€ëŠ¥í•œì§€ ì¡°íšŒ
 							if(isRunBatch(calCurrentDate, arrDemonInfo[i])){
 								ADemonProcess demonProcess;
 								try {
@@ -107,7 +107,7 @@ public class DemonSvr implements Runnable{
 					
 				}catch(Exception defaultE){
 					defaultE.printStackTrace();//xxxxx
-					printDemonLog("TmsDemonSvr ½ÇÇà Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù : " + defaultE.toString());
+					printDemonLog("TmsDemonSvr ì‹¤í–‰ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤ : " + defaultE.toString());
 				}
 			}
 			
@@ -119,28 +119,28 @@ public class DemonSvr implements Runnable{
 	
 	public boolean isRunBatch(Calendar calCurrent, DemonInfo demonInfo){
 		boolean blnRtnValue = false;
-		//¼³Á¤µÈ ½ÃÀÛ ½Ã°£°ú Á¾·á ½Ã°£ »çÀÌÀÇ ½Ã°£ ¿Ü¿¡´Â SkipÇÑ´Ù.
+		//ì„¤ì •ëœ ì‹œì‘ ì‹œê°„ê³¼ ì¢…ë£Œ ì‹œê°„ ì‚¬ì´ì˜ ì‹œê°„ ì™¸ì—ëŠ” Skipí•œë‹¤.
 		int intStrt = Integer.parseInt(demonInfo.getStrSTRT());
 		int intCurt = Integer.parseInt(DateTime.toString(calCurrent, "HH"));
 		int intEndt = Integer.parseInt(demonInfo.getStrENDT());
 		
 		if(intStrt <= intCurt && intCurt <= intEndt){
-			// ÇöÀç Index : (ÇöÀç½Ã°£[Millisecond] - ±âÁØ½Ã°£[Millisecond]) / (ÁÖ±â*1000)
-			// DemonÀÌ ½ÇÇàµÉ ¶§ ÃÊ±â ÀÎµ¦½º ¼ÂÆÃ
+			// í˜„ì¬ Index : (í˜„ì¬ì‹œê°„[Millisecond] - ê¸°ì¤€ì‹œê°„[Millisecond]) / (ì£¼ê¸°*1000)
+			// Demonì´ ì‹¤í–‰ë  ë•Œ ì´ˆê¸° ì¸ë±ìŠ¤ ì…‹íŒ…
 			if(demonInfo.getStrMODE().equals("I") && demonInfo.getLongRunIdx()==-1){
 				long longStndMilli = DateTime.toCalendar(demonInfo.getStrYMDT(),"yyyyMMddHHmmss").getTimeInMillis();
 				demonInfo.setLongRunIdx(((calCurrent.getTimeInMillis() - longStndMilli)/(Integer.parseInt(demonInfo.getStrINTV())*1000)));
 			}
 
-			// ¹üÀ§½Ã°£(ÇöÀç½Ã°£-intTrdInterval)
+			// ë²”ìœ„ì‹œê°„(í˜„ì¬ì‹œê°„-intTrdInterval)
 			long longCurrentMillis		= calCurrent.getTimeInMillis();
 			long longZoneMillis			= longCurrentMillis-longTrdInterval;
-			// ±âÁØ½Ã°£(¼³Á¤½Ã°£)
+			// ê¸°ì¤€ì‹œê°„(ì„¤ì •ì‹œê°„)
 			long longRunningMillis		= getMode2DateTimeString(calCurrent, demonInfo).getTimeInMillis();
 			
 			if(demonInfo.getStrMODE().equals("I")){
 				if(longCurrentMillis > longRunningMillis){
-					// exceptionÀÌ ÀÖÀ» °æ¿ì¸¦ ´ëºñÇØ¼­ 1¾¿ Áõ°¡ÇÏÁö ¾Ê°í ´Ù½Ã ¼³Á¤
+					// exceptionì´ ìˆì„ ê²½ìš°ë¥¼ ëŒ€ë¹„í•´ì„œ 1ì”© ì¦ê°€í•˜ì§€ ì•Šê³  ë‹¤ì‹œ ì„¤ì •
 					long longStndMilli = DateTime.toCalendar(demonInfo.getStrYMDT(),"yyyyMMddHHmmss").getTimeInMillis();
 					demonInfo.setLongRunIdx(((calCurrent.getTimeInMillis() - longStndMilli)/(Integer.parseInt(demonInfo.getStrINTV())*1000)));
 
@@ -179,7 +179,7 @@ public class DemonSvr implements Runnable{
 			sbDateTimeString.append(demonInfo.getStrYMDT().substring(12));
 		}
 		if(demonInfo.getStrMODE().equals("I")){
-			// ´ÙÀ½ Running time = ±âÁØ½Ã°£ + ((ÇöÀç Index+1) * (ÁÖ±â*1000)
+			// ë‹¤ìŒ Running time = ê¸°ì¤€ì‹œê°„ + ((í˜„ì¬ Index+1) * (ì£¼ê¸°*1000)
 			Calendar tmpCalendar = Calendar.getInstance();
 			tmpCalendar.setTimeInMillis(DateTime.toCalendar(demonInfo.getStrYMDT(),"yyyyMMddHHmmss").getTimeInMillis() + ((demonInfo.getLongRunIdx()+1) * (Integer.parseInt(demonInfo.getStrINTV())*1000)));
 			sbDateTimeString.append(DateTime.toString(tmpCalendar, "yyyyMMddHHmmss"));

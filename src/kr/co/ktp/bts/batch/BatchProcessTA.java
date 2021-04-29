@@ -20,7 +20,7 @@ public class BatchProcessTA extends ABatchProcess{
 	public void initialize(String[] args) {
 		/**
 		//=============================================================================
-		// [ÇÁ·Î±×·¥¸í]
+		// [í”„ë¡œê·¸ë¨ëª…]
 		//------------------------------------------------------------------------------
 	    //  IDX | FIELD             | VALUE
 		//------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ public class BatchProcessTA extends ABatchProcess{
 	@Override
 	public void process() {
 		if(batchWorkInfo==null){
-			printBatchLog(PROCESSID+".process() : BatchWorkInfo ¸¦ ÃÊ±âÈ­ÇÏÁö ¸øÇÏ¿´½À´Ï´Ù");
+			printBatchLog(PROCESSID+".process() : BatchWorkInfo ë¥¼ ì´ˆê¸°í™”í•˜ì§€ ëª»í•˜ì˜€ìŠµë‹ˆë‹¤");
 			System.exit(0);
 		}
 		printBatchLog("");
@@ -153,7 +153,7 @@ public class BatchProcessTA extends ABatchProcess{
 				paramsMap.put("iSndPhnId", "01062761387");
 				paramsMap.put("iRcvPhnId", "01062761387");
 				paramsMap.put("iCallback", "01062761387");
-				paramsMap.put("iSndMsg", resultMap != null && ((String)resultMap.get("WORK_RSLT_FLAG")).equals("CO")?"[¹èÄ¡¼º°ø]"+batchWorkInfo.getStrModuleID():"[¹èÄ¡½ÇÆĞ]"+batchWorkInfo.getStrModuleID());
+				paramsMap.put("iSndMsg", resultMap != null && ((String)resultMap.get("WORK_RSLT_FLAG")).equals("CO")?"[ë°°ì¹˜ì„±ê³µ]"+batchWorkInfo.getStrModuleID():"[ë°°ì¹˜ì‹¤íŒ¨]"+batchWorkInfo.getStrModuleID());
 				service.runProcedure(paramsMap, "SP_BTSSENDSMS");
 			}catch(Exception e){
 			}
@@ -200,7 +200,7 @@ public class BatchProcessTA extends ABatchProcess{
 				paramsMap.put("iSndPhnId", "01062761387");
 				paramsMap.put("iRcvPhnId", "01062761387");
 				paramsMap.put("iCallback", "01062761387");
-				paramsMap.put("iSndMsg", resultMap != null && ((String)resultMap.get("oReturnStatus")).equals("S")?"[°ËÁõ¼º°ø]"+batchWorkInfo.getStrModuleID():"[°ËÁõ½ÇÆĞ]"+batchWorkInfo.getStrModuleID());
+				paramsMap.put("iSndMsg", resultMap != null && ((String)resultMap.get("oReturnStatus")).equals("S")?"[ê²€ì¦ì„±ê³µ]"+batchWorkInfo.getStrModuleID():"[ê²€ì¦ì‹¤íŒ¨]"+batchWorkInfo.getStrModuleID());
 				service.runProcedure(paramsMap, "SP_BTSSENDSMS");
 			}catch(Exception e){
 			}

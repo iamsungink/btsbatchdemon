@@ -21,7 +21,7 @@ public class BatchProcessTB extends ABatchProcess{
 	public void initialize(String[] args) {
 		/**
 		//=============================================================================
-		// [ÇÁ·Î±×·¥¸í]
+		// [í”„ë¡œê·¸ëž¨ëª…]
 		//------------------------------------------------------------------------------
 	    //  IDX | FIELD             | VALUE
 		//------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ public class BatchProcessTB extends ABatchProcess{
 	@Override
 	public void process() {
 		if(batchWorkInfo==null){
-			printBatchLog(PROCESSID+".process() : BatchWorkInfo ¸¦ ÃÊ±âÈ­ÇÏÁö ¸øÇÏ¿´½À´Ï´Ù");
+			printBatchLog(PROCESSID+".process() : BatchWorkInfo ë¥¼ ì´ˆê¸°í™”í•˜ì§€ ëª»í•˜ì˜€ìŠµë‹ˆë‹¤");
 			System.exit(0);
 		}
 		printBatchLog("");

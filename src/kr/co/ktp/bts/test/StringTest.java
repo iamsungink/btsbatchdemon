@@ -7,32 +7,32 @@ public class StringTest {
 	
 	public static void main(String[] args) throws UnsupportedEncodingException {
 
-		String source = "´ëÇÑ¹Î±¹";
+		String source = "ëŒ€í•œë¯¼êµ­";
 		
-		// javaÆÄÀÏ ±âº» encoding
+		// javaíŒŒì¼ ê¸°ë³¸ encoding
 		System.out.println("file encoding : "
 				+ System.getProperty("file.encoding"));
 		
-		// ±âº» encodingÀÇ ¹ÙÀÌÆ® ¹è¿­
+		// ê¸°ë³¸ encodingì˜ ë°”ì´íŠ¸ ë°°ì—´
 		byte[] chbyte = source.getBytes();
 		for (byte b : chbyte) {
 			System.out.printf("%02x ", b);
 		}
 		System.out.println();
-		System.out.println("±âº» encoding ¹®ÀÚ¿­ ±æÀÌ : "+new String(chbyte).length());
-		System.out.println("±âº» encoding ¹ÙÀÌÆ® ±æÀÌ : "+chbyte.length);
-		System.out.println("±âº» encoding ¹®ÀÚ¿­      : "+new String(chbyte));
+		System.out.println("ê¸°ë³¸ encoding ë¬¸ìì—´ ê¸¸ì´ : "+new String(chbyte).length());
+		System.out.println("ê¸°ë³¸ encoding ë°”ì´íŠ¸ ê¸¸ì´ : "+chbyte.length);
+		System.out.println("ê¸°ë³¸ encoding ë¬¸ìì—´      : "+new String(chbyte));
 		System.out.println();
 
-		// euc-kr encodingÀÇ ¹ÙÀÌÆ® ¹è¿­
+		// euc-kr encodingì˜ ë°”ì´íŠ¸ ë°°ì—´
 		byte[] krbyte = source.getBytes("euc-kr");
 		for (byte b : krbyte) {
 			System.out.printf("%02x ", b);
 		}
 		System.out.println();
-		System.out.println("euc-kr ¹®ÀÚ¿­ ±æÀÌ : "+new String(krbyte).length());
-		System.out.println("euc-kr ¹ÙÀÌÆ® ±æÀÌ : "+krbyte.length);
-		System.out.println("euc-kr ¹®ÀÚ¿­ : "+new String(krbyte, "euc-kr"));
+		System.out.println("euc-kr ë¬¸ìì—´ ê¸¸ì´ : "+new String(krbyte).length());
+		System.out.println("euc-kr ë°”ì´íŠ¸ ê¸¸ì´ : "+krbyte.length);
+		System.out.println("euc-kr ë¬¸ìì—´ : "+new String(krbyte, "euc-kr"));
 		
 		String paramList = "a|0,b|1,c|2";
 		String[] arrDelKey = paramList.split(",");

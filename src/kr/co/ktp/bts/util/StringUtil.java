@@ -1333,7 +1333,7 @@ public class StringUtil {
 	    }
 
 		 /**
-		  * ¹®ÀÚ¿­ °ø¹é ÀÚ¸´¼ö ¸ÂÃß±â
+		  * ë¬¸ìì—´ ê³µë°± ìë¦¿ìˆ˜ ë§ì¶”ê¸°
 		  * @param str
 		  * @param length
 		  * @param ch
@@ -1362,14 +1362,14 @@ public class StringUtil {
 	    
 		/**
 		 * <pre>
-		 *	int ÇüÀÇ ÀÚ·á¸¦ ÀÔ·Â¹Ş¾Æ ±æÀÌ¸¸Å­ ¹®ÀÚ¸¦ Ã¤¿ö¼­ ¸®ÅÏÇÏ´Â method
+		 *	int í˜•ì˜ ìë£Œë¥¼ ì…ë ¥ë°›ì•„ ê¸¸ì´ë§Œí¼ ë¬¸ìë¥¼ ì±„ì›Œì„œ ë¦¬í„´í•˜ëŠ” method
 		 *
-		 *	inputData : ¿øµ¥ÀÌÅ¸
-		 *	align     : 0 - left, 1 - right (¾î´ÀÂÊ¿¡ ¿ø µ¥ÀÌÅ¸¸¦ µÑ°ÇÁö...)
-		 *	fillSize  : ´Ã¸®°íÀÚÇÏ´Â ±æÀÌ
-		 *	fillChar  : Ã¤¿ï ¹®ÀÚ
+		 *	inputData : ì›ë°ì´íƒ€
+		 *	align     : 0 - left, 1 - right (ì–´ëŠìª½ì— ì› ë°ì´íƒ€ë¥¼ ë‘˜ê±´ì§€...)
+		 *	fillSize  : ëŠ˜ë¦¬ê³ ìí•˜ëŠ” ê¸¸ì´
+		 *	fillChar  : ì±„ìš¸ ë¬¸ì
 		 *
-		 *	¿¹) : fmt(35, 1, 5, '0')  =>  "00035"
+		 *	ì˜ˆ) : fmt(35, 1, 5, '0')  =>  "00035"
 		 * <pre>
 		 */
 		public static String fmt(int value, int align, int fillSize, char fillChar) {
@@ -1379,14 +1379,14 @@ public class StringUtil {
 
 		/**
 		 * <pre>
-		 *	String ÇüÀÇ ÀÚ·á¸¦ ÀÔ·Â¹Ş¾Æ ±æÀÌ¸¸Å­ ¹®ÀÚ¸¦ Ã¤¿ö¼­ ¸®ÅÏÇÏ´Â method
+		 *	String í˜•ì˜ ìë£Œë¥¼ ì…ë ¥ë°›ì•„ ê¸¸ì´ë§Œí¼ ë¬¸ìë¥¼ ì±„ì›Œì„œ ë¦¬í„´í•˜ëŠ” method
 		 *
-		 *	inputData : ¿øµ¥ÀÌÅ¸
-		 *	align     : 0 - left, 1 - right (¾î´ÀÂÊ¿¡ ¿ø µ¥ÀÌÅ¸¸¦ µÑ°ÇÁö...)
-		 *	fillSize  : ´Ã¸®°íÀÚÇÏ´Â ±æÀÌ
-		 *	fillChar  : Ã¤¿ï ¹®ÀÚ
+		 *	inputData : ì›ë°ì´íƒ€
+		 *	align     : 0 - left, 1 - right (ì–´ëŠìª½ì— ì› ë°ì´íƒ€ë¥¼ ë‘˜ê±´ì§€...)
+		 *	fillSize  : ëŠ˜ë¦¬ê³ ìí•˜ëŠ” ê¸¸ì´
+		 *	fillChar  : ì±„ìš¸ ë¬¸ì
 		 *
-		 *	¿¹) : fmt("string", 1, 10, '0')  =>  "0000string"
+		 *	ì˜ˆ) : fmt("string", 1, 10, '0')  =>  "0000string"
 		 * <pre>
 		 */
 		public static String fmt(String data, int align, int fillSize, char fillChar) {
@@ -1398,7 +1398,7 @@ public class StringUtil {
 			byte[] bytes = data.getBytes();
 
 			int len = bytes.length;
-			if (len < fillSize) {	// ¸ğÀÚ¶ó´Â ±æÀÌ¸¸Å­ Ã¤¿ï ¹®ÀÚ¿­À» ¸¸µç´Ù.
+			if (len < fillSize) {	// ëª¨ìë¼ëŠ” ê¸¸ì´ë§Œí¼ ì±„ìš¸ ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
 				if (align == 0) {
 					StringBuffer strbuf = new StringBuffer(data);
 					for (int i = len; i < fillSize; i++) {
@@ -1415,7 +1415,7 @@ public class StringUtil {
 					return strbuf.toString();
 				}
 			}
-			else {	// ¿øÇÏ´Â ±æÀÌº¸´Ù Å©¸é Àß¶ó º¸³½´Ù.
+			else {	// ì›í•˜ëŠ” ê¸¸ì´ë³´ë‹¤ í¬ë©´ ì˜ë¼ ë³´ë‚¸ë‹¤.
 				if (align == 0) {
 					return new String(bytes, 0, fillSize);
 				}

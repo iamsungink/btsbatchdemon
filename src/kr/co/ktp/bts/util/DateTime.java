@@ -10,9 +10,9 @@ public class DateTime {
 	public static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 	public static final Locale DEFAULT_LOCALE = Locale.getDefault();
 	
-	private static final String[] WEEK_NAMES = {"ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä"};
+	private static final String[] WEEK_NAMES = {"ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† "};
 
-	// °¢ ´ÜÀ§ÀÇ ¹éºĞÀÇ 1ÃÊ È¯»ê°ª
+	// ê° ë‹¨ìœ„ì˜ ë°±ë¶„ì˜ 1ì´ˆ í™˜ì‚°ê°’
 	public static final int millisPerSecond	= 1000;
 	public static final int millisPerMinute		= millisPerSecond * 60;
 	public static final int millisPerHour		= millisPerMinute * 60;

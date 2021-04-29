@@ -18,7 +18,7 @@ public class DemonDAO extends AbstractService{
 	private static final String NAME_SPACE = "demonProcessor.";
 	
 	/**
-	 * ¹èÄ¡ÀÌ·Âµî·Ï
+	 * ë°°ì¹˜ì´ë ¥ë“±ë¡
 	 * @param DemonDTO
 	 */
 	public void startBatchHtry(DemonDTO dto) throws Exception{
@@ -31,7 +31,7 @@ public class DemonDAO extends AbstractService{
 	}
 	
 	/**
-	 * ¹èÄ¡ÀÌ·Â¼öÁ¤(ÀÛ¾÷¿Ï·á±¸ºĞ 0:ÀÛ¾÷Áß,1:¿À·ù,2:¿Ï·á)
+	 * ë°°ì¹˜ì´ë ¥ìˆ˜ì •(ì‘ì—…ì™„ë£Œêµ¬ë¶„ 0:ì‘ì—…ì¤‘,1:ì˜¤ë¥˜,2:ì™„ë£Œ)
 	 * @param DemonDTO
 	 */
 	public void endBatchHtry(DemonDTO dto) throws Exception{
@@ -46,7 +46,7 @@ public class DemonDAO extends AbstractService{
 	
 	
 	/**
-	 * ÇÁ·Î½ÃÀú ½ÇÇà
+	 * í”„ë¡œì‹œì € ì‹¤í–‰
 	 * @param paramMap
 	 * @param id
 	 * @return
@@ -73,7 +73,7 @@ public class DemonDAO extends AbstractService{
 	}
 	
 	/**
-	 * proc ½ÇÇà°á°ú Á¶È¸
+	 * proc ì‹¤í–‰ê²°ê³¼ ì¡°íšŒ
 	 * @param paramMap
 	 * @return
 	 * @throws Exception
@@ -84,7 +84,7 @@ public class DemonDAO extends AbstractService{
 	}
 	
 	/**
-	 * Ã»±¸Á¤º¸ Á¶È¸
+	 * ì²­êµ¬ì •ë³´ ì¡°íšŒ
 	 * @param paramsMap
 	 * @return
 	 * @throws Exception
@@ -94,7 +94,7 @@ public class DemonDAO extends AbstractService{
 	}
 
 	/**
-	 * ¹èÄ¡ÇÁ·Î±×·¥Á¤º¸
+	 * ë°°ì¹˜í”„ë¡œê·¸ë¨ì •ë³´
 	 * @param paramsMap
 	 * @return
 	 * @throws Exception
@@ -104,7 +104,7 @@ public class DemonDAO extends AbstractService{
 	}
 
 	/**
-	 * ´ç¿ùÃ»±¸Á¤º¸ Á¸Àç¿©ºÎ
+	 * ë‹¹ì›”ì²­êµ¬ì •ë³´ ì¡´ì¬ì—¬ë¶€
 	 * @param paramsMap
 	 * @return
 	 * @throws SQLException

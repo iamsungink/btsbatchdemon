@@ -25,7 +25,7 @@ import kr.co.ktp.bts.util.FtpUtil;
 
 public class DemonProcessIA extends ADemonProcess{
 	
-	private String PROCESS_NAME = "[KOSÃ»±¸] ";
+	private String PROCESS_NAME = "[KOSì²­êµ¬] ";
 	
 	private String inv_yyyymm = null;
 	private String inv_flag = null;
@@ -51,7 +51,7 @@ public class DemonProcessIA extends ADemonProcess{
 			strFileExtention = (String) jsonObj.get("fileExtention");
 			
 		}catch (Exception e) {
-			throw new Exception(this.getClass().getName() + " ÃÊ±âÈ­ Error : Configuration.getConfig() : " + e.toString());
+			throw new Exception(this.getClass().getName() + " ì´ˆê¸°í™” Error : Configuration.getConfig() : " + e.toString());
 		}
 		
 	}
@@ -64,7 +64,7 @@ public class DemonProcessIA extends ADemonProcess{
 	
 	/**
 	//=============================================================================
-	// KOSÃ»±¸
+	// KOSì²­êµ¬
 	//------------------------------------------------------------------------------
     //  IDX | FIELD             | VALUE
 	//------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ public class DemonProcessIA extends ADemonProcess{
 			try {
 				int k=0;
 				String strFileNm = "";
-				//ÀÛ¾÷ ÆÄÀÏ °æ·Î ³»ÀÇ ÆÄÀÏ °Ë»öÇÏ¿© Æ¯Á¤ Configuration.getConfig("FTP.SVR.PREF.IA") ·Î ½ÃÀÛÇÏ´Â ÆÄÀÏÀ» Ã£¾Æ ¹èÄ¡¸¦ ¼öÇà .
+				//ì‘ì—… íŒŒì¼ ê²½ë¡œ ë‚´ì˜ íŒŒì¼ ê²€ìƒ‰í•˜ì—¬ íŠ¹ì • Configuration.getConfig("FTP.SVR.PREF.IA") ë¡œ ì‹œì‘í•˜ëŠ” íŒŒì¼ì„ ì°¾ì•„ ë°°ì¹˜ë¥¼ ìˆ˜í–‰ .
 				for(fileList = (FileUtil.getFileList(new File(strFilePath), true)).iterator();fileList.hasNext();){
 					strFileNm = (String)fileList.next();
 					printDemonLog("Local FileNm" + " : "+strFileNm +"("+strFileNmPrefix+":"+strFileNm.startsWith(strFileNmPrefix) + ", "+strFileExtention+":"+strFileNm.endsWith(strFileExtention)  +")");
@@ -149,7 +149,7 @@ public class DemonProcessIA extends ADemonProcess{
 			}
 			
 		}else{
-			printDemonLog("Ftp Server¿¡¼­ NCUST Server·Î ÆÄÀÏÀ» ÀÌµ¿ÇÏ´ø Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù");
+			printDemonLog("Ftp Serverì—ì„œ NCUST Serverë¡œ íŒŒì¼ì„ ì´ë™í•˜ë˜ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤");
 		}
 		
 		printDemonLog("END");
@@ -186,7 +186,7 @@ public class DemonProcessIA extends ADemonProcess{
 					printDemonLog("Remote FileNm" + " : "+fileName +"("+strFileNmPrefix+":"+fileName.startsWith(strFileNmPrefix)  + ", "+strFileExtention+":"+fileName.endsWith(strFileExtention)  +")");
 					
 					if(fileName.startsWith(strFileNmPrefix) && fileName.endsWith(strFileExtention)){
-						System.out.println(f.getName() + " ÆÄÀÏÀ» ´Ù¿î·Îµå ÇÕ´Ï´Ù.");
+						System.out.println(f.getName() + " íŒŒì¼ì„ ë‹¤ìš´ë¡œë“œ í•©ë‹ˆë‹¤.");
 						
 						OutputStream output;
 						output = new FileOutputStream(Configuration.getConfig("FILE.PATH.DATA")+"/"+fileName);
@@ -195,7 +195,7 @@ public class DemonProcessIA extends ADemonProcess{
 						output.close();
 					}
 				}else{
-					System.out.println(f.getName() + " µğ·ºÅä¸®ÀÔ´Ï´Ù.");
+					System.out.println(f.getName() + " ë””ë ‰í† ë¦¬ì…ë‹ˆë‹¤.");
 				}
 			}
 			

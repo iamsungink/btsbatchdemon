@@ -82,10 +82,10 @@ public class FtpTest {
 				System.out.println("~~~~~~~~test~~~~~~~~~~");
 				
 				if(f.isDirectory()){
-					System.out.println(f.getName() + " µğ·ºÅä¸®ÀÔ´Ï´Ù.");
+					System.out.println(f.getName() + " ë””ë ‰í† ë¦¬ì…ë‹ˆë‹¤.");
 					
 				}else{
-					System.out.println(f.getName() + "ÆÄÀÏÀ» ´Ù¿î·Îµå ÇÕ´Ï´Ù.");
+					System.out.println(f.getName() + "íŒŒì¼ì„ ë‹¤ìš´ë¡œë“œ í•©ë‹ˆë‹¤.");
 					
 					OutputStream output;
 					output = new FileOutputStream(Configuration.getConfig("FILE.PATH.DATA")+"/"+f.getName());
@@ -100,7 +100,7 @@ public class FtpTest {
 			int k=0;
 			String strFileNm = "";
 			
-			//ÀÛ¾÷ ÆÄÀÏ °æ·Î ³»ÀÇ ÆÄÀÏ °Ë»öÇÏ¿© Æ¯Á¤ Configuration.getConfig("FTP.SVR.PREF.IA") ·Î ½ÃÀÛÇÏ´Â ÆÄÀÏÀ» Ã£¾Æ ¹èÄ¡¸¦ ¼öÇà .
+			//ì‘ì—… íŒŒì¼ ê²½ë¡œ ë‚´ì˜ íŒŒì¼ ê²€ìƒ‰í•˜ì—¬ íŠ¹ì • Configuration.getConfig("FTP.SVR.PREF.IA") ë¡œ ì‹œì‘í•˜ëŠ” íŒŒì¼ì„ ì°¾ì•„ ë°°ì¹˜ë¥¼ ìˆ˜í–‰ .
 			for(fileList = (FileUtil.getFileList(new File("/app/arch/btsbatch/data_back/IB/"), true)).iterator();fileList.hasNext();){
 				strFileNm = (String)fileList.next();
 				

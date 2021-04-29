@@ -13,7 +13,7 @@ public class DemonService {
 	private DemonDAO dao = new DemonDAO();
 	
 	/**
-	 * ¹èÄ¡ÀÌ·Âµî·Ï
+	 * ë°°ì¹˜ì´ë ¥ë“±ë¡
 	 * @param DemonDTO
 	 * @throws Exception 
 	 */
@@ -22,7 +22,7 @@ public class DemonService {
 	}
 	
 	/**
-	 * ¹èÄ¡ÀÌ·Â¼öÁ¤(ÀÛ¾÷¿Ï·á±¸ºĞ 0:ÀÛ¾÷Áß,1:¿À·ù,2:¿Ï·á)
+	 * ë°°ì¹˜ì´ë ¥ìˆ˜ì •(ì‘ì—…ì™„ë£Œêµ¬ë¶„ 0:ì‘ì—…ì¤‘,1:ì˜¤ë¥˜,2:ì™„ë£Œ)
 	 * @param DemonDTO
 	 * @throws Exception 
 	 */
@@ -32,7 +32,7 @@ public class DemonService {
 	
 	
 	/**
-	 * ÇÁ·Î½ÃÀú½ÇÇà
+	 * í”„ë¡œì‹œì €ì‹¤í–‰
 	 * @param paramMap
 	 * @param id
 	 * @return
@@ -43,7 +43,7 @@ public class DemonService {
 	}
 	
 	/**
-	 * proc ½ÇÇà°á°ú Á¶È¸
+	 * proc ì‹¤í–‰ê²°ê³¼ ì¡°íšŒ
 	 * @param paramMap
 	 * @return
 	 * @throws Exception
@@ -53,7 +53,7 @@ public class DemonService {
 	}
 	
 	/**
-	 * Ã»±¸Á¤º¸ Á¶È¸
+	 * ì²­êµ¬ì •ë³´ ì¡°íšŒ
 	 * @param paramsMap
 	 * @return
 	 * @throws Exception
@@ -63,7 +63,7 @@ public class DemonService {
 	}
 
 	/**
-	 * ¹èÄ¡ÇÁ·Î±×·¥Á¤º¸ Á¶È¸
+	 * ë°°ì¹˜í”„ë¡œê·¸ë¨ì •ë³´ ì¡°íšŒ
 	 * @param paramsMap
 	 * @return
 	 * @throws Exception
@@ -73,7 +73,7 @@ public class DemonService {
 	}
 
 	/**
-	 * ´ç¿ù Ã»±¸Á¤º¸ Á¸Àç¿©ºÎ
+	 * ë‹¹ì›” ì²­êµ¬ì •ë³´ ì¡´ì¬ì—¬ë¶€
 	 * @param paramsMap
 	 * @return
 	 * @throws SQLException
