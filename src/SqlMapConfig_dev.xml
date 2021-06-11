@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<!--Always ensure to use the correct XML header as above! -->
+<sqlMapConfig> 
+    <!--The properties (name=value) in the file specified here can be used placeholders in this config file (e.g.
+        “ ${driver}” . The file is usually relative to the classpath and is optional. -->
+    <properties resource="db.properties" />
+    
+    <!--These settings control SqlMap configuration details, primarily to do with transaction
+        management. They are all optional (see the Developer Guide for more). -->
+    <settings cacheModelsEnabled="true" 
+              enhancementEnabled="true"
+              lazyLoadingEnabled="true" 
+              maxRequests="32" 
+              maxSessions="10"
+              maxTransactions="5" 
+              useStatementNamespaces="true" />
+              
+    <!--Type aliases allow you to use a shorter name for long fully qualified class names. -->
+    <typeAlias alias="String"			type="java.lang.String"/>
+    <typeAlias alias="int"				type="java.lang.Integer"/>
+    <typeAlias alias="boolean"			type="java.lang.Boolean"/>
+    <typeAlias alias="resultMap"		type="java.util.HashMap"/>
+    <typeAlias alias="paramsMap"		type="java.util.HashMap"/>   
+    <typeAlias alias="DemonDTO"			type="kr.co.ktp.bts.dto.DemonDTO"/>
+
+    
+      
+    <!--Configure a datasource to use with this SQL Map using SimpleDataSource.
+        Notice the use of the properties from the above resource -->
+    <transactionManager type="JDBC">
+        <dataSource type="SIMPLE">
+            <property name="JDBC.Driver" value="${driver}" />
+            <property name="JDBC.ConnectionURL" value="${url_dev}" />
+            <property name="JDBC.Username" value="${username}" />
+            <property name="JDBC.Password" value="${password}" />
+			<property name="maxActive" value="30" />
+			<property name="maxIdle" value="3" />
+			<property name="maxWait" value="-1" />            
+        </dataSource>
+        <!-- <dataSource type="JNDI">
+            <property name="context.java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+            <property name="context.java.naming.provider.url" value="t3://192.168.130.160:7002" />
+            <property name="DataSource" value="KTPPool"/>
+        </dataSource> -->        
+    </transactionManager>
+    
+    <!--Identify all SQL Map XML files to be loaded by this SQL map. Notice the paths
+        are relative to the classpath. For now, we only have one… -->
+    <sqlMap resource="sqlmap/demonProcessor.xml" />
+
+    
+</sqlMapConfig>
+

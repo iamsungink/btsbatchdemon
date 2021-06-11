@@ -32,7 +32,9 @@ public class Configuration {
 			throw new Exception("Can't read the properties file" + e.getMessage());
 		}
 		*/
-		String resource = "";
+	    String sysProp = System.getProperty("gubun");
+        System.out.println("서버 구분 (Config) : " + sysProp);
+        String resource = "dev".equals(sysProp) ? "config/config_dev.properties" : "config/config.properties";
 		
 		if(FileUtil.isWindows()){
 			resource = "conf"+System.getProperty("file.separator")+"config.properties";
