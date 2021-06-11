@@ -19,7 +19,13 @@ public class SqlMapConfig {
 			Charset charset = Charset.forName("UTF-8");
 			Resources.setCharset(charset);
 			
-			Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
+			// 개발서버와 운영서버를 구분하기 위해 JVM 의 argument를 가져온다.
+            String sysProp = System.getProperty("gubun");
+            System.out.println("서버 구분 (Mapper) : " + sysProp);
+            
+            String resource = "dev".equals(sysProp) ? "SqlMapConfig_dev.xml" : "SqlMapConfig.xml";
+            
+			Reader reader = Resources.getResourceAsReader(resource);
 			sqlMap = SqlMapClientBuilder.buildSqlMapClient(reader);
 			
 		}catch (Exception ioe) {
