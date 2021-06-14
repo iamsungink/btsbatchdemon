@@ -14,4 +14,11 @@ export CLASSPATH=${CLASSPATH}${driveLabel}${LibraryDir}json-simple-1.1.1.jar:
 export CLASSPATH=${CLASSPATH}${driveLabel}${ConfDir}:
 export CLASSPATH=${CLASSPATH}${driveLabel}${LibraryDir}btsbatch.jar:
 
-java kr.co.ktp.bts.demon.DemonProcessTA
+if [ "${1}" == "dev" ]
+then
+   _RUNMODE_="gubun=dev"
+else
+   _RUNMODE_="gubun=prod"
+fi
+
+java  -D${_RUNMODE_} kr.co.ktp.bts.demon.DemonProcessTA
