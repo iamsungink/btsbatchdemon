@@ -1,4 +1,6 @@
 #!/bin/bash
+#dev machine -Dgubun=dev
+#prod machine -Dgubun=prod
 
 export driveLabel=/app/arch/btsbatch/
 export LibraryDir=lib/
@@ -14,4 +16,11 @@ export CLASSPATH=${CLASSPATH}${driveLabel}${LibraryDir}json-simple-1.1.1.jar:
 export CLASSPATH=${CLASSPATH}${driveLabel}${ConfDir}:
 export CLASSPATH=${CLASSPATH}${driveLabel}${LibraryDir}btsbatch.jar:
 
-nohup java -D${1} kr.co.ktp.bts.demon.DemonSvr >> ${driveLabel}/btsDemon.log & 
+if [ "${1}" == "dev" ]
+then 
+   _RUNMODE_="gubun=dev" 
+else
+   _RUNMODE_="gubun=prod" 
+fi
+
+nohup java -D${_RUNMODE_} kr.co.ktp.bts.demon.DemonSvr >> ${driveLabel}/btsDemon.log & 
