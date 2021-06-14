@@ -21,4 +21,4 @@ else
    _RUNMODE_="gubun=prod"
 fi
 
-java  -D${_RUNMODE_} kr.co.ktp.bts.demon.DemonProcessTA
+java  -Dgubun=${_RUNMODE_} kr.co.ktp.bts.demon.DemonProcessTA
