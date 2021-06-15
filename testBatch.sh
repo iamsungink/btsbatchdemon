@@ -14,4 +14,4 @@ export CLASSPATH=${CLASSPATH}${driveLabel}${LibraryDir}json-simple-1.1.1.jar:
 export CLASSPATH=${CLASSPATH}${driveLabel}${ConfDir}:
 export CLASSPATH=${CLASSPATH}${driveLabel}${LibraryDir}btsbatchinf.jar:
 
-java kr.co.ktp.bts.batch.BatchProcessManager BTS_CUST_TRANS_KT_TEST TA 20190816 0925 00000 DEMON SP_BTS_CUST_TRANS_KT_TEST 20190816 &
+java -Dgubun=prod kr.co.ktp.bts.batch.BatchProcessManager BTS_CUST_TRANS_KT_TEST TA 20190816 0925 00000 DEMON SP_BTS_CUST_TRANS_KT_TEST 20190816 &
